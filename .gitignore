@@ -12,7 +12,6 @@ target/
 *.jar
 *.war
 *.ear
-*.db
  
 ######################
 # Windows
