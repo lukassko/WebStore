@@ -43,5 +43,10 @@ public class OrderController {
 		model.addAttribute("orders", orders);
 		return null;
 	}
+	
+	@RequestMapping(value = "/orders/new", method=RequestMethod.GET)
+	public String newOrder(@PathVariable("clientId") int clientId) {
+		return "newOrder";
+	}
 
 }
