@@ -14,5 +14,6 @@ public interface ClientRepository {
 	
 	public Collection<Product> findAllProduct(int orderId);
 	
-	public void addClient(Client client);
+	public void save(Client client);
+	
 }

@@ -1,8 +1,11 @@
 package com.app.store.web;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,29 +28,30 @@ public class ClientController {
 		this.storeService = storeService;
 		this.emailValidator = emailValidator;
 	}
-	
-	//pozbyc sie
+
 	@InitBinder
 	public void dataBinding(WebDataBinder binder) {
+		binder.setDisallowedFields("id");
 		binder.addValidators(emailValidator);
 	}
-	
-	@ModelAttribute("client")
-	public Client findClient(@PathVariable("clientId") int clientId){
-		Client client = storeService.findClientById(clientId);
-		return client;
+			
+	@RequestMapping(value = "/clients/${clientId}/edit", method=RequestMethod.GET)
+	public String getClientsDetail(@PathVariable("clientId") int clientId, Model model) {
+		Client client = this.storeService.findClientById(clientId);
+		model.addAttribute("client", client);
+		return "clientDetail";
 	}
 	
-	@RequestMapping(value = "/clients/${clientId}", method=RequestMethod.POST)
-	public String updateClientsDetail(Model model) {
-		return null;
+	@RequestMapping(value = "/clients/${clientId}/edit", method=RequestMethod.POST)
+	public String updateClientsDetail(@PathVariable("clientId") int clientId, @Valid Client client, BindingResult result) {
+		if (result.hasErrors()) {
+			return "clientDetail";
+		} else {
+			client.setId(clientId);
+			this.storeService.saveClient(client);
+			return "redirect:/clients/{clientId}";
+		}
 	}
-	
-	@RequestMapping(value = "/clients/${clientId}", method=RequestMethod.GET)
-	public String getClientsDetail(Model model) {
-		return null;
-	}
-	
 	
 	@RequestMapping(value = "/clients/new")
 	public String addNewClient(){

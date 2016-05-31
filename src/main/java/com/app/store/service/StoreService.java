@@ -14,4 +14,5 @@ public interface StoreService {
 	
 	public Collection<Product> findAllProductForOrder(int orderId);
 	
+	public void saveClient(Client client);
 }

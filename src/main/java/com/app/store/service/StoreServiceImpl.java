@@ -23,4 +23,9 @@ public class StoreServiceImpl implements StoreService {
 		return null;
 	}
 
+	public void saveClient(Client client) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

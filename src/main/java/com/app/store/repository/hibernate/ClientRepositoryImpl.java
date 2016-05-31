@@ -36,7 +36,7 @@ public class ClientRepositoryImpl implements ClientRepository {
 		return null;
 	}
 
-	public void addClient(Client client) {
+	public void save(Client client) {
 		if(client.isNew()) {
 			manager.persist(client);
 		} else {
