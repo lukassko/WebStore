@@ -6,6 +6,7 @@ import org.springframework.validation.Validator;
 
 import com.app.store.model.Client;
 
+
 public class EmailValidator implements Validator {
 
 	public boolean supports(Class<?> clazz) {

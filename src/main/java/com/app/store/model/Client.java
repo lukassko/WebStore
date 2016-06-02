@@ -6,11 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
+@Table(name = "client")
 public class Client extends BaseEntity {
 
 	@NotEmpty

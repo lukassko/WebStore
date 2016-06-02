@@ -12,6 +12,7 @@ import com.app.store.model.Client;
 import com.app.store.model.Order;
 import com.app.store.model.Product;
 import com.app.store.repository.ClientRepository;
+import javax.persistence.Query;
 
 @Repository
 public class ClientRepositoryImpl implements ClientRepository {
@@ -43,6 +44,12 @@ public class ClientRepositoryImpl implements ClientRepository {
 			manager.merge(client);
 		}
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Client> findAll() {
+		Query query = this.manager.createQuery("SELECT c FROM Client c");
+		return query.getResultList();
 	}
 
 }

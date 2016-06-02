@@ -16,4 +16,5 @@ public interface ClientRepository {
 	
 	public void save(Client client);
 	
+	public Collection<Client> findAll();
 }

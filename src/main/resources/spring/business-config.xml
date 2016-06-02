@@ -24,6 +24,7 @@
 	   
 	   <jdbc:initialize-database data-source="dataSource">
 	       <!--  <jdbc:script location="classpath:db/mysql/initDB.sql"/> -->
+	        <jdbc:script location="classpath:db/mysql/initDB.sql"/> 
 	        <jdbc:script location="classpath:db/mysql/populateDB.sql"/>
 	    </jdbc:initialize-database>
 	    
@@ -52,8 +53,9 @@
 	      </property>
 	      <property name="jpaProperties">
 	         <props>
+	   			<prop key="hibernate.show_sql">true</prop>
+	            <prop key="hibernate.hbm2ddl.auto">create</prop>
 	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> 
-	            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 	         </props>
 	      </property>
 	   </bean>

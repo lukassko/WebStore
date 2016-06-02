@@ -17,5 +17,7 @@
         <property name="suffix" value=".jsp" />
     </bean>
     
+    <bean id="emailValidator" class="com.app.store.utility.EmailValidator" />
+   
 	
 </beans>   
