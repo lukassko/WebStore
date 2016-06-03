@@ -22,8 +22,7 @@ public class StoreServiceImpl implements StoreService {
 	}
 	
 	public Client findClientById(int cientId) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.clientRepository.findById(cientId);
 	}
 
 	public Collection<Order> findAllOrdersForClient(int clientId) {

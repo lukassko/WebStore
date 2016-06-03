@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.app.store.model.Client;
 import com.app.store.model.Order;
+import com.app.store.model.Product;
 import com.app.store.service.StoreService;
 
 @Controller
@@ -47,6 +48,13 @@ public class OrderController {
 	@RequestMapping(value = "/orders/new", method=RequestMethod.GET)
 	public String newOrder(@PathVariable("clientId") int clientId) {
 		return "newOrder";
+	}
+	
+	@RequestMapping(value = "/orders/${orderId}/products", method=RequestMethod.GET)
+	public String getProducts(@PathVariable("orderId") int orderId, Model model) {
+		Collection<Product> products = this.storeService.findAllProductForOrder(orderId);
+		model.addAttribute("products", products);
+		return null;
 	}
 
 }

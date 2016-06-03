@@ -1,9 +1,11 @@
 package com.app.store.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -21,6 +23,9 @@ public class Product extends BaseEntity {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
+	@ManyToMany(mappedBy = "products")
+	private List<Order> orders;
+	
 	public String getName() {
 		return name;
 	}

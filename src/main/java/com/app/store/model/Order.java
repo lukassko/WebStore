@@ -2,10 +2,17 @@ package com.app.store.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
@@ -22,9 +29,12 @@ public class Order extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;
-
-	/*@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-	private List<Product> products;*/
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="shopping_cart", 
+     	joinColumns=@JoinColumn(name="order_id"), 
+     	inverseJoinColumns=@JoinColumn(name="product_id"))
+	private List<ShoppingCart> products;
 	
 	public Order () {
 		date = new Date();
