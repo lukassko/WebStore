@@ -18,7 +18,7 @@ import com.app.store.model.Product;
 import com.app.store.service.StoreService;
 
 @Controller
-@RequestMapping(value = "/clients/${clientId}")
+@RequestMapping(value = "/clients/{clientId}")
 public class OrderController {
 
 	private final StoreService storeService;
@@ -40,9 +40,9 @@ public class OrderController {
 
 	@RequestMapping(value = "/orders", method=RequestMethod.GET)
 	public String getAllOrders(@PathVariable("clientId") int clientId, Model model) {
-		Collection<Order> orders = storeService.findAllOrdersForClient(clientId);
-		model.addAttribute("orders", orders);
-		return null;
+		Client client = storeService.findClientById(clientId);
+		model.addAttribute("client", client);
+		return "orders/ordersDetail";
 	}
 	
 	@RequestMapping(value = "/orders/new", method=RequestMethod.GET)
@@ -50,7 +50,7 @@ public class OrderController {
 		return "newOrder";
 	}
 	
-	@RequestMapping(value = "/orders/${orderId}/products", method=RequestMethod.GET)
+	@RequestMapping(value = "/orders/{orderId}/products", method=RequestMethod.GET)
 	public String getProducts(@PathVariable("orderId") int orderId, Model model) {
 		Collection<Product> products = this.storeService.findAllProductForOrder(orderId);
 		model.addAttribute("products", products);

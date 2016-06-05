@@ -32,9 +32,9 @@ public class Order extends BaseEntity {
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="shopping_cart", 
-     	joinColumns=@JoinColumn(name="order_id"), 
-     	inverseJoinColumns=@JoinColumn(name="product_id"))
-	private List<ShoppingCart> products;
+     	joinColumns=@JoinColumn(name="order_id",referencedColumnName="ID"), 
+     	inverseJoinColumns=@JoinColumn(name="product_id",referencedColumnName="ID"))
+	private List<Product> products;
 	
 	public Order () {
 		date = new Date();

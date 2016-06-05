@@ -26,7 +26,7 @@ public class Client extends BaseEntity {
 	
 	private String password;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Order> orders;
 	
 	public List<Order> getOrders() {
@@ -77,5 +77,9 @@ public class Client extends BaseEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String toString(){
+		return "Name " + this.name + "; Last name " + this.lastName;
 	}
 }

@@ -11,15 +11,15 @@
 	<table id="client" border=1>
 		<tr>
 			<th>ID</th>
-			<td>${owner.id}</td>
+			<td>${client.id}</td>
 		</tr> 	
 		<tr>
 			<th>First name</th>
-			<td>${owner.name}</td>
+			<td>${client.name}</td>
 		</tr> 
 		<tr>
 			<th>Last name</th>
-			 <td>${owner.lastName}</td>
+			 <td>${client.lastName}</td>
 		</tr> 
 	</table>
 	
@@ -33,7 +33,7 @@
 	<c:forEach var="order" items="${client.orders}">
 	<tr>
 		<td>${order.date}</td>
-		<td>${pet.totalPrice}</td>
+		<td>${order.totalPrice}</td>
 		<!-- wyswietlenei produktow
 			<td colspan="2">
 			<table>
@@ -50,6 +50,5 @@
 	</c:forEach>
 	</table>
 	<br>
-	<input type="button"  onclick="location.href='/clients/${owner.id}/orders/new.html'" value="Register" >
 </body>
 </html>

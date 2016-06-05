@@ -1,18 +1,19 @@
 package com.app.store.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "shopping_cart")
+//@Entity
+//@Table(name = "shopping_cart")
 public class ShoppingCart extends BaseEntity {
 
-	@ManyToOne
-	@JoinColumn(name = "order_id")
+	//@Column(name = "order_id")
 	private Order order;
-
+	
+	//@Column(name = "product_id")
 	private Product product;
 	
 	public Order getOrder() {

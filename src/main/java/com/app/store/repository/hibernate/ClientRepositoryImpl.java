@@ -21,9 +21,11 @@ public class ClientRepositoryImpl implements ClientRepository {
 	private EntityManager manager;
 	
 	public Client findById(int clientId) {
-		TypedQuery<Client> query = this.manager.createNamedQuery("SELECT c FROM Client c WHERE c.id = :id", Client.class);
+		//Client client = manager.find(Client.class, clientId);
+		Query query = this.manager.createQuery("SELECT c FROM Client c WHERE c.id = :id");
 		query.setParameter("id", clientId);
-		return query.getSingleResult();
+		return (Client)query.getSingleResult();
+		//return client;
 	}
 
 	public Collection<Order> findAllOrders(int clientId) {

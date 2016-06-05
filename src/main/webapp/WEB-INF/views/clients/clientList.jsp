@@ -30,7 +30,7 @@
 							<td>${client.lastName}</td>
 							<td>${client.email}</td>
 							<td>
-							    <spring:url value="/clients/${client.id}" var="clientUrl" />
+							    <spring:url value="/clients/${client.id}/orders" var="clientUrl" />
 							    <spring:url value="/clients/${client.id}/edit" var="editUrl" />
 							    <spring:url value="/clients/${client.id}/delete" var="deleteUrl" /> 
 							    
