@@ -30,7 +30,7 @@ public class Order extends BaseEntity {
 	@JoinColumn(name = "client_id")
 	private Client client;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="shopping_cart", 
      	joinColumns=@JoinColumn(name="order_id",referencedColumnName="ID"), 
      	inverseJoinColumns=@JoinColumn(name="product_id",referencedColumnName="ID"))

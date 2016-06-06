@@ -23,8 +23,8 @@ public class Product extends BaseEntity {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@ManyToMany(mappedBy = "products")
-	private List<Order> orders;
+	//@ManyToMany(mappedBy = "products")
+	//private List<Order> orders;
 	
 	public String getName() {
 		return name;

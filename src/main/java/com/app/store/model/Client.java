@@ -26,7 +26,7 @@ public class Client extends BaseEntity {
 	
 	private String password;
 
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Order> orders;
 	
 	public List<Order> getOrders() {

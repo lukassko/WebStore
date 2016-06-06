@@ -34,19 +34,25 @@
 	<tr>
 		<td>${order.date}</td>
 		<td>${order.totalPrice}</td>
-		<!-- wyswietlenei produktow
-			<td colspan="2">
-			<table>
-			<c:forEach var="visit" items="${pet.visits}">
-			<tr>
-				<td>${visit.date}</td>
-				<td>${visit.description}</td>
-			</tr>
-			</c:forEach>
-			</table>
-			</td>
-		 -->
 	</tr> 
+	</c:forEach>
+	</table>
+	
+	
+	<table id="productList">
+	<tr>
+		<td>Order ID</td>
+		<td>Date</td>
+		<td>Name</td>
+	</tr> 
+	<c:forEach var="order" items="${client.orders}">
+		<c:forEach var="product" items="${order.products}">
+		<tr>
+			<td>${orders.id}</td>
+			<td>${product.category.name}</td>
+			<td>${product.name}</td>
+		</tr> 
+		</c:forEach>
 	</c:forEach>
 	</table>
 	<br>
