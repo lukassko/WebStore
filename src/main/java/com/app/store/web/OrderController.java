@@ -40,6 +40,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/orders", method=RequestMethod.GET)
 	public String getAllOrders(@PathVariable("clientId") int clientId, Model model) {
+		System.out.println("GET all orders");
 		Client client = storeService.findClientById(clientId);
 		model.addAttribute("client", client);
 		//for (Order o : client.getOrders())

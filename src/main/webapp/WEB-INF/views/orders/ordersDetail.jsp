@@ -5,23 +5,38 @@
 <head>
 	<%@ page isELIgnored="false" %>
 	<title>Order informations</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
+	<div class="container">
+	<c:if test="${not empty msg}">
+	    <div class="alert alert-${css} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" 
+	                                aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<strong>${msg}</strong>
+			    </div>
+		</c:if>
+
+
 	<h2>Client</h2>
-	<table id="client" border=1>
-		<tr>
-			<th>ID</th>
-			<td>${client.id}</td>
-		</tr> 	
-		<tr>
-			<th>First name</th>
-			<td>${client.name}</td>
-		</tr> 
-		<tr>
-			<th>Last name</th>
-			 <td>${client.lastName}</td>
-		</tr> 
-	</table>
+	
+	<div class="row">
+		<label class="col-sm-2">ID</label>
+		<div class="col-sm-10">${client.id}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-sm-2">Name</label>
+		<div class="col-sm-10">${client.name}</div>
+	</div>
+
+	<div class="row">
+		<label class="col-sm-2">Email</label>
+		<div class="col-sm-10">${client.lastName}</div>
+	</div>
+	
 	
 	<h2>Orders</h2>
 	
@@ -58,5 +73,6 @@
 	</c:forEach>
 	</table>
 	<br>
+</div>
 </body>
 </html>

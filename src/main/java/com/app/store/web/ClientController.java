@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.store.model.Client;
 import com.app.store.service.StoreService;
@@ -61,13 +63,26 @@ public class ClientController {
 	
 	@RequestMapping(value = "/clients/new", method=RequestMethod.GET)
 	public String initNewClient(Model model){
+		System.out.println("GET execute /clients/new");
 		Client client = new Client();
 		model.addAttribute("client", client);
 		return "clients/newClient";
 	}
 	
 	@RequestMapping(value = "/clients/new", method=RequestMethod.POST)
-	public String addNewClient(){
-		return null;
+	public String addNewClient(@ModelAttribute("client") @Validated Client client, BindingResult result,
+			final RedirectAttributes redirectAttributes){
+		System.out.println("Adding user");
+		if (result.hasErrors()) {
+			return "clients/newClient";
+		} else {
+			redirectAttributes.addFlashAttribute("css", "success");
+			if (client.isNew())
+				redirectAttributes.addFlashAttribute("msg", "User added successfully!");
+			else 
+				redirectAttributes.addFlashAttribute("msg", "User updated successfully!");
+		}
+		storeService.saveClient(client);
+		return "redirect:/clients/" + client.getId()+"/orders";
 	}
 }

@@ -5,21 +5,22 @@
 <head>
 	<%@ page isELIgnored="false" %>
 	<title>Client detail</title>
-	<style>
-	.error {
-		color: #ff0000;
-	}
-	
-	.errorblock {
-		color: #000;
-		background-color: #ffEEEE;
-		border: 3px solid #ff0000;
-		padding: 8px;
-		margin: 16px;
-	}
-	</style>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
+
+<div class="container">
+
+	<c:if test="${not empty msg}">
+		    <div class="alert alert-${css} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" 
+                                aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<strong>${msg}</strong>
+		    </div>
+	</c:if>
+</div>
 
 	<h2>Client detail</h2>
 
