@@ -41,18 +41,20 @@ public class Order extends BaseEntity {
 		totalPrice = new BigDecimal(0);
 	}
 	
-	/*public List<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
 
+	/*
 	private List<Product> getProductInternal(){
 		if(this.products == null)
 			this.products = new LinkedList<Product>();
 		return this.products;
+	}
+	
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 	public void addProduct(Product product){
 		getProductInternal().add(product);

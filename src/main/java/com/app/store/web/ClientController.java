@@ -53,13 +53,20 @@ public class ClientController {
 		}
 	}
 	
-	@RequestMapping(value = "/clients/")
+	@RequestMapping(value = "/clients")
 	public String findAllClients(Model model){
 		model.addAttribute("clients", storeService.findAllClients());
 		return "clients/clientList";
 	}
 	
-	@RequestMapping(value = "/clients/new")
+	@RequestMapping(value = "/clients/new", method=RequestMethod.GET)
+	public String initNewClient(Model model){
+		Client client = new Client();
+		model.addAttribute("client", client);
+		return "clients/newClient";
+	}
+	
+	@RequestMapping(value = "/clients/new", method=RequestMethod.POST)
 	public String addNewClient(){
 		return null;
 	}

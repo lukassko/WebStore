@@ -42,6 +42,10 @@ public class OrderController {
 	public String getAllOrders(@PathVariable("clientId") int clientId, Model model) {
 		Client client = storeService.findClientById(clientId);
 		model.addAttribute("client", client);
+		//for (Order o : client.getOrders())
+			//for (Product p : o.get) {
+				
+			//}
 		return "orders/ordersDetail";
 	}
 	

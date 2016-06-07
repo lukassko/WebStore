@@ -42,15 +42,17 @@
 	<table id="productList">
 	<tr>
 		<td>Order ID</td>
-		<td>Date</td>
+		<td>Category</td>
 		<td>Name</td>
+		<td>Price</td>
 	</tr> 
 	<c:forEach var="order" items="${client.orders}">
 		<c:forEach var="product" items="${order.products}">
 		<tr>
-			<td>${orders.id}</td>
+			<td>${order.id}</td>
 			<td>${product.category.name}</td>
 			<td>${product.name}</td>
+			<td>${product.price}</td>
 		</tr> 
 		</c:forEach>
 	</c:forEach>

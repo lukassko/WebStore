@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -19,12 +20,9 @@ public class Product extends BaseEntity {
 	@NotEmpty
 	private BigDecimal price;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	private Category category;
-
-	//@ManyToMany(mappedBy = "products")
-	//private List<Order> orders;
 	
 	public String getName() {
 		return name;
@@ -42,11 +40,11 @@ public class Product extends BaseEntity {
 		this.price = price;
 	}
 
-	public Category getCategoryId() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategoryId(Category category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 }
