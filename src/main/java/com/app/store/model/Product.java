@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Product extends BaseEntity {
+public class Product extends BaseEntity implements Comparable<Product> {
 
 	@NotEmpty
 	private String name;
@@ -47,4 +47,11 @@ public class Product extends BaseEntity {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
+	public int compareTo(Product o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
 }
