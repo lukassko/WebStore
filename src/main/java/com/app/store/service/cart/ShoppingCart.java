@@ -3,6 +3,7 @@ package com.app.store.service.cart;
 import java.math.BigDecimal;
 import java.util.Map;
 
+import com.app.store.model.Order;
 import com.app.store.model.Product;
 
 public interface ShoppingCart {
@@ -16,5 +17,7 @@ public interface ShoppingCart {
 	public void clearCart();
 	
 	public BigDecimal getPrice();
+	
+	public Order getOrder();
 	
 }
