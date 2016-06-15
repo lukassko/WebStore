@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS orders (
 CREATE TABLE IF NOT EXISTS shopping_cart (
 	order_id INT(4) UNSIGNED NOT NULL,
 	product_id INT(4) UNSIGNED NOT NULL,
+	quantity INT(4) UNSIGNED NOT NULL,
 	INDEX(order_id),
 	FOREIGN KEY (order_id) REFERENCES orders(id),
 	FOREIGN KEY (product_id) REFERENCES product(id)

@@ -50,11 +50,6 @@ public class OrderController {
 		return "orders/ordersDetail";
 	}
 	
-	@RequestMapping(value = "/orders/new", method=RequestMethod.GET)
-	public String newOrder(@PathVariable("clientId") int clientId) {
-		return "newOrder";
-	}
-	
 	@RequestMapping(value = "/orders/{orderId}/products", method=RequestMethod.GET)
 	public String getProducts(@PathVariable("orderId") int orderId, Model model) {
 		Collection<Product> products = this.storeService.findAllProductForOrder(orderId);
