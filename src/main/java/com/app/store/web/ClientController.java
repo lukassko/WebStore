@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.app.store.model.Client;
+import com.app.store.entity.Client;
 import com.app.store.service.StoreService;
 import com.app.store.utility.EmailValidator;
 
@@ -37,21 +37,22 @@ public class ClientController {
 		binder.addValidators(emailValidator);
 	}
 			
-	@RequestMapping(value = "/clients/${clientId}/edit", method=RequestMethod.GET)
+	@RequestMapping(value = "/clients/{clientId}/edit", method=RequestMethod.GET)
 	public String getClientsDetail(@PathVariable("clientId") int clientId, Model model) {
+		System.out.println("EDIT");
 		Client client = this.storeService.findClientById(clientId);
 		model.addAttribute("client", client);
-		return "clientDetail";
+		return "clients/newUpdateClient";
 	}
 	
-	@RequestMapping(value = "/clients/${clientId}/edit", method=RequestMethod.POST)
+	@RequestMapping(value = "/clients/{clientId}/edit", method=RequestMethod.POST)
 	public String updateClientsDetail(@PathVariable("clientId") int clientId, @Valid Client client, BindingResult result) {
 		if (result.hasErrors()) {
-			return "clientDetail";
+			return "clients/newUpdateClient";
 		} else {
 			client.setId(clientId);
 			this.storeService.saveClient(client);
-			return "redirect:/clients/{clientId}";
+			return "redirect:/clients/";
 		}
 	}
 	
@@ -66,7 +67,7 @@ public class ClientController {
 		System.out.println("GET execute /clients/new");
 		Client client = new Client();
 		model.addAttribute("client", client);
-		return "clients/newClient";
+		return "clients/newUpdateClient";
 	}
 	
 	@RequestMapping(value = "/clients/new", method=RequestMethod.POST)

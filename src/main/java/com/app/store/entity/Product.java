@@ -1,4 +1,4 @@
-package com.app.store.model;
+package com.app.store.entity;
 
 import java.math.BigDecimal;
 import java.util.List;

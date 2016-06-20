@@ -1,4 +1,4 @@
-package com.app.store.service.cart;
+package com.app.store.model;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -7,21 +7,28 @@ import java.util.Map;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.app.store.model.Order;
-import com.app.store.model.Product;
+import com.app.store.entity.Client;
+import com.app.store.entity.Order;
+import com.app.store.entity.Product;
 
 @Component
 @Scope("session")
 public class ShoppingCartImpl implements ShoppingCart {
 
 	private Map<Product,Integer> products;
+	//private List<Product> products;
 	private BigDecimal totalPrice;
 	private Order order;
 	
 	public ShoppingCartImpl () {
+		System.out.println("ShoppingCartImpl contruct start");
 		products = new HashMap<Product, Integer>();
 		totalPrice = BigDecimal.ZERO;
 		order = new Order();
+	}
+	
+	public void setClient(Client client) {
+		this.order.setClient(client);
 	}
 	
 	public void addProduct(Product product) {

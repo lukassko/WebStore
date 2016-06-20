@@ -73,6 +73,8 @@
 	</c:forEach>
 	</table>
 	<br>
+	<spring:url value="/clients/${client.id}/orders/new" var="newOrderUrl" />
+	<button class="btn btn-info"  onclick="location.href='${newOrderUrl}'">New order</button>
 </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.app.store.model;
+package com.app.store.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

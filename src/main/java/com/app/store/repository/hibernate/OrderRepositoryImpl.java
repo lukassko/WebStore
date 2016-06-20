@@ -6,10 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.app.store.model.Order;
-import com.app.store.model.Product;
+import org.springframework.stereotype.Repository;
+
+import com.app.store.entity.Order;
+import com.app.store.entity.Product;
 import com.app.store.repository.OrderRepository;
 
+@Repository
 public class OrderRepositoryImpl implements OrderRepository {
 
 	@PersistenceContext

@@ -1,10 +1,10 @@
-package com.app.store.service.cart;
+package com.app.store.model;
 
 import java.math.BigDecimal;
 import java.util.Map;
 
-import com.app.store.model.Order;
-import com.app.store.model.Product;
+import com.app.store.entity.Order;
+import com.app.store.entity.Product;
 
 public interface ShoppingCart {
 

@@ -1,4 +1,4 @@
-package com.app.store.model;
+package com.app.store.entity;
 
 import java.util.LinkedList;
 import java.util.List;

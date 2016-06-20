@@ -8,10 +8,11 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import com.app.store.model.Client;
-import com.app.store.model.Order;
-import com.app.store.model.Product;
+import com.app.store.entity.Client;
+import com.app.store.entity.Order;
+import com.app.store.entity.Product;
 import com.app.store.repository.ClientRepository;
+
 import javax.persistence.Query;
 
 @Repository

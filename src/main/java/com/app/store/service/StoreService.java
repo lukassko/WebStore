@@ -2,9 +2,9 @@ package com.app.store.service;
 
 import java.util.Collection;
 
-import com.app.store.model.Client;
-import com.app.store.model.Order;
-import com.app.store.model.Product;
+import com.app.store.entity.Client;
+import com.app.store.entity.Order;
+import com.app.store.entity.Product;
 
 public interface StoreService {
 	
@@ -17,4 +17,8 @@ public interface StoreService {
 	public void saveClient(Client client);
 	
 	public Collection<Client> findAllClients();
+	
+	public Collection<Product> findAllProduct();
+	
+	public Product findProductById(int productId);
 }

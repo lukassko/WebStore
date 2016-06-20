@@ -13,6 +13,6 @@ INSERT IGNORE INTO client VALUES (1, 'Lukasz', 'Szczepanski', 'lukasz@gmail.com'
 
 INSERT IGNORE INTO orders VALUES (1 ,'2016-05-26', 29.99,1 );
 
-INSERT IGNORE INTO shopping_cart VALUES (1, 1, 2);
-INSERT IGNORE INTO shopping_cart VALUES (1, 2, 1);
-INSERT IGNORE INTO shopping_cart VALUES (1, 3, 1);
+INSERT IGNORE INTO shopping_cart(order_id, product_id) VALUES (1, 1);
+INSERT IGNORE INTO shopping_cart(order_id, product_id) VALUES (1, 2);
+INSERT IGNORE INTO shopping_cart(order_id, product_id) VALUES (1, 3);

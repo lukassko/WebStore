@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.app.store.model.Client;
-import com.app.store.model.Order;
-import com.app.store.model.Product;
+import com.app.store.entity.Client;
+import com.app.store.entity.Order;
+import com.app.store.entity.Product;
 import com.app.store.service.StoreService;
 
 @Controller
@@ -33,25 +33,20 @@ public class OrderController {
 	}
 	
 	@ModelAttribute("client")
-	public Client findClient(@PathVariable("clientId") int clientId){
+	public Client findClientHandler(@PathVariable("clientId") int clientId){
 		Client client = storeService.findClientById(clientId);
 		return client;
 	}
 
 	@RequestMapping(value = "/orders", method=RequestMethod.GET)
-	public String getAllOrders(@PathVariable("clientId") int clientId, Model model) {
-		System.out.println("GET all orders");
+	public String getAllOrdersHandler(@PathVariable("clientId") int clientId, Model model) {
 		Client client = storeService.findClientById(clientId);
 		model.addAttribute("client", client);
-		//for (Order o : client.getOrders())
-			//for (Product p : o.get) {
-				
-			//}
 		return "orders/ordersDetail";
 	}
 	
 	@RequestMapping(value = "/orders/{orderId}/products", method=RequestMethod.GET)
-	public String getProducts(@PathVariable("orderId") int orderId, Model model) {
+	public String getProductsHandler(@PathVariable("orderId") int orderId, Model model) {
 		Collection<Product> products = this.storeService.findAllProductForOrder(orderId);
 		model.addAttribute("products", products);
 		return null;

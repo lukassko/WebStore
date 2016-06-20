@@ -2,9 +2,9 @@ package com.app.store.repository;
 
 import java.util.Collection;
 
-import com.app.store.model.Client;
-import com.app.store.model.Order;
-import com.app.store.model.Product;
+import com.app.store.entity.Client;
+import com.app.store.entity.Order;
+import com.app.store.entity.Product;
 
 public interface ClientRepository {
 
