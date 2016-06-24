@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
 <head>
@@ -73,7 +74,7 @@
 	</c:forEach>
 	</table>
 	<br>
-	<spring:url value="/clients/${client.id}/orders/new" var="newOrderUrl" />
+	<spring:url value="/clients/${client.id}/orders/new/shoppingCart" var="newOrderUrl" />
 	<button class="btn btn-info"  onclick="location.href='${newOrderUrl}'">New order</button>
 </div>
 </body>

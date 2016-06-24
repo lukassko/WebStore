@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.app.store.entity.Client;
-import com.app.store.entity.Order;
 import com.app.store.entity.Product;
 import com.app.store.service.StoreService;
 

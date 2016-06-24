@@ -1,6 +1,10 @@
 package com.app.store.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.store.entity.Client;
 import com.app.store.entity.Order;
 import com.app.store.entity.Product;
+import com.app.store.model.ShoppingCart;
 import com.app.store.repository.ClientRepository;
 import com.app.store.repository.OrderRepository;
 import com.app.store.repository.ProductRepository;
@@ -57,6 +62,17 @@ public class StoreServiceImpl implements StoreService {
 
 	public Product findProductById(int productId) {
 		return this.productRepository.findById(productId);
+	}
+
+	public void buyProducts(Client client, ShoppingCart shoppingCart) {
+		Map<Product,Integer> products = shoppingCart.getProducts();
+		List<Product> productList = new LinkedList<Product>();
+		productList.addAll(products.keySet());
+		Order order = new Order();
+		order.setClient(client);
+		order.setTotalPrice(shoppingCart.getPrice());
+		order.setProducts(productList);
+		this.orderRepository.save(order);
 	}
 
 }

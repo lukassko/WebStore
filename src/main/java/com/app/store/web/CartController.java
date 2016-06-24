@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.app.store.entity.Product;
 import com.app.store.model.ShoppingCart;
-import com.app.store.repository.ClientRepository;
-import com.app.store.repository.OrderRepository;
-import com.app.store.repository.ProductRepository;
 import com.app.store.service.StoreService;
 
 
@@ -30,20 +28,20 @@ public class CartController {
 		this.storeService = storeService;
 		this.shoppingCart = shoppingCart;
 	}
-	
+		
 	@RequestMapping(value = "/shoppingCart", method=RequestMethod.GET)
 	public String myCartHandler(@PathVariable("clientId") int clientId, Model model) {
-		model.addAttribute("products", this.shoppingCart.getProducts());
+		model.addAttribute("products", this.shoppingCart.getProducts().keySet());
+		model.addAttribute("client", this.storeService.findClientById(clientId));
 		return "cart/shoppingCart";
 	}
 	
 	@RequestMapping(value = "/buy")
 	public String buyProductHandler(@PathVariable("clientId") int clientId, Model model,
 			 @RequestParam(value = "id", defaultValue = "") int productId ) {
-		System.out.println("Buy for " + clientId + " product no " + productId);
 		this.shoppingCart.addProduct(this.storeService.findProductById(productId));
 		model.addAttribute("products", this.shoppingCart.getProducts());
-		return "redirect:/shoppingCart";
+		return "redirect:/clients/" + clientId +"/orders/new/shoppingCart";
 	}
 	
 	@RequestMapping(value = "/showProducts",  method=RequestMethod.GET)
@@ -53,5 +51,8 @@ public class CartController {
 		return "redirect:/products/show";
 	}
 	
-	
+	@RequestMapping(value = "/acceptOrder",  method=RequestMethod.GET)
+	public String acceptOrderHandler(@PathVariable("clientId") int clientId) {
+		return null;
+	}
 }

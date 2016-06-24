@@ -2,6 +2,7 @@ package com.app.store.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -46,7 +47,6 @@ public class Order extends BaseEntity {
 	}
 
 
-	/*
 	private List<Product> getProductInternal(){
 		if(this.products == null)
 			this.products = new LinkedList<Product>();
@@ -58,7 +58,7 @@ public class Order extends BaseEntity {
 	}
 	public void addProduct(Product product){
 		getProductInternal().add(product);
-	}*/
+	}
 	
 	public Date getDate() {
 		return date;

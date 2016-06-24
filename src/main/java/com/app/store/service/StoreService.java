@@ -5,6 +5,7 @@ import java.util.Collection;
 import com.app.store.entity.Client;
 import com.app.store.entity.Order;
 import com.app.store.entity.Product;
+import com.app.store.model.ShoppingCart;
 
 public interface StoreService {
 	
@@ -21,4 +22,6 @@ public interface StoreService {
 	public Collection<Product> findAllProduct();
 	
 	public Product findProductById(int productId);
+	
+	public void buyProducts(Client client, ShoppingCart shoppingCart);
 }

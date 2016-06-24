@@ -27,33 +27,27 @@
 <body>
 
 <div class="container">
-	<h2>Client List</h2>
-		
-			<table class="table table-striped">
+	<h2>Shopping Cart</h2>
+	
+	<table class="table table-striped">
 				<thead>
 				<tr>
-					<th>#ID</th>
 					<th>Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>Action</th>
+					<th>Price</th>
 				</tr>
 				</thead>
-					<c:forEach var="client" items="${clients}">
+					<c:forEach var="product" items="${products}">
 						<tr>
-							<td>${client.id}</td>
-							<td>${client.name}</td>
-							<td>${client.lastName}</td>
-							<td>${client.email}</td>
-							<td>
-							    <spring:url value="/products/show" var="productUrl" />
-							    
-							    <button class="btn btn-info"  onclick="location.href='${productUrl}'">Show product</button>
-							    
-							 </td>
+							<td>${product.name}</td>
+							<td>${product.price}</td>
 						</tr>
 					</c:forEach>	     
 			</table>
-		</div>
+			
+	<spring:url value="/clients/${client.id}/orders/new/showProducts" var="productUrl" />
+							    
+	<button class="btn btn-info"  onclick="location.href='${productUrl}'">Show product</button>
+
+</div>
 </body>
 </html>

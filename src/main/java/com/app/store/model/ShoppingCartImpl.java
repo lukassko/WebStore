@@ -21,7 +21,6 @@ public class ShoppingCartImpl implements ShoppingCart {
 	private Order order;
 	
 	public ShoppingCartImpl () {
-		System.out.println("ShoppingCartImpl contruct start");
 		products = new HashMap<Product, Integer>();
 		totalPrice = BigDecimal.ZERO;
 		order = new Order();
@@ -82,4 +81,5 @@ public class ShoppingCartImpl implements ShoppingCart {
 			this.totalPrice = this.totalPrice.add(price);
 		}
 	}
+
 }

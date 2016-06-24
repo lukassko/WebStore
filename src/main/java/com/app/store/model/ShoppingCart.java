@@ -19,5 +19,5 @@ public interface ShoppingCart {
 	public BigDecimal getPrice();
 	
 	public Order getOrder();
-	
+
 }
