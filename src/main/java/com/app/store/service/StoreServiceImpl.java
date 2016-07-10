@@ -64,6 +64,7 @@ public class StoreServiceImpl implements StoreService {
 		return this.productRepository.findById(productId);
 	}
 
+	@Transactional
 	public void buyProducts(Client client, ShoppingCart shoppingCart) {
 		Map<Product,Integer> products = shoppingCart.getProducts();
 		List<Product> productList = new LinkedList<Product>();
@@ -73,6 +74,12 @@ public class StoreServiceImpl implements StoreService {
 		order.setTotalPrice(shoppingCart.getPrice());
 		order.setProducts(productList);
 		this.orderRepository.save(order);
+		shoppingCart.clearCart();
+	}
+
+	public Client findClientByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

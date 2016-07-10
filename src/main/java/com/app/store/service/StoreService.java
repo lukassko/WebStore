@@ -11,6 +11,8 @@ public interface StoreService {
 	
 	public Client findClientById(int cientId);
 	
+	public Client findClientByEmail(String email);
+	
 	public Collection<Order> findAllOrdersForClient(int clientId);
 	
 	public Collection<Product> findAllProductForOrder(int orderId);

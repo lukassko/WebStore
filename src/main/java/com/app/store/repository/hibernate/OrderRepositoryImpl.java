@@ -30,6 +30,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	}
 
 	public void save(Order order) {
+		manager.persist(order);
 	}
 
 	public Collection<Order> findAll() {

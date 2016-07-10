@@ -45,8 +45,10 @@
 			</table>
 			
 	<spring:url value="/clients/${client.id}/orders/new/showProducts" var="productUrl" />
+	<spring:url value="/clients/${client.id}/orders/new/acceptOrder" var="buyUrl" />
 							    
 	<button class="btn btn-info"  onclick="location.href='${productUrl}'">Show product</button>
+	<button class="btn btn-info"  onclick="location.href='${buyUrl}'">Buy product</button>
 
 </div>
 </body>

@@ -53,6 +53,8 @@ public class CartController {
 	
 	@RequestMapping(value = "/acceptOrder",  method=RequestMethod.GET)
 	public String acceptOrderHandler(@PathVariable("clientId") int clientId) {
-		return null;
+		System.out.println("accept");
+		this.storeService.buyProducts(this.storeService.findClientById(clientId), shoppingCart);
+		return "clients/clientList";
 	}
 }
