@@ -3,9 +3,11 @@ package com.app.store.entity;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -23,6 +25,10 @@ public class Product extends BaseEntity implements Comparable<Product> {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	private Category category;
+	
+	@Lob
+	@Column(nullable = true)
+	private byte[] image;
 	
 	public String getName() {
 		return name;
@@ -46,6 +52,14 @@ public class Product extends BaseEntity implements Comparable<Product> {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public int compareTo(Product o) {

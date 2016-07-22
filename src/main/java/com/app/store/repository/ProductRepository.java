@@ -12,4 +12,6 @@ public interface ProductRepository {
 	public Product findById(int productId);
 	
 	public List<Product> findAll();
+	
+	public void save(Product product);
 }

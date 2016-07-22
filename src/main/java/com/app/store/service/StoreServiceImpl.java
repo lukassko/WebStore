@@ -78,8 +78,11 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	public Client findClientByEmail(String email) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void saveProduct(Product product) {
+		this.productRepository.save(product);
 	}
 
 }

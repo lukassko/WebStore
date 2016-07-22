@@ -38,4 +38,12 @@ public class ProductRepositoryImpl implements ProductRepository {
 		return (Product)query.getSingleResult();
 	}
 
+	public void save(Product product) {
+		if(product.isNew()) {
+			manager.persist(product);
+		} else {
+			manager.merge(product);
+		}
+	}
+
 }

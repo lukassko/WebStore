@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS product (
 	name VARCHAR(20),
 	category_id INT(4) UNSIGNED NOT NULL,
 	price DECIMAL(4,2),
+	image longblob,
 	INDEX(name),
 	FOREIGN KEY (category_id) REFERENCES category(id)
 ) engine=InnoDB;
