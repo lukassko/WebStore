@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,7 +21,8 @@ public class Product extends BaseEntity implements Comparable<Product> {
 	@NotEmpty
 	private String name;
 	
-	@NotEmpty
+	@NotNull
+	@Digits(integer=5, fraction=2)
 	private BigDecimal price;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

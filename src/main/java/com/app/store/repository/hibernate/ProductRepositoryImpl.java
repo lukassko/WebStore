@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.app.store.entity.Category;
 import com.app.store.entity.Client;
 import com.app.store.entity.Product;
 import com.app.store.repository.ProductRepository;
@@ -44,6 +45,18 @@ public class ProductRepositoryImpl implements ProductRepository {
 		} else {
 			manager.merge(product);
 		}
+	}
+
+	public Category findCategoryById(int categoryId) {
+		Query query = this.manager.createQuery("SELECT c FROM Category c WHERE c.id = :id");
+		query.setParameter("id", categoryId);
+		return (Category)query.getSingleResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Category> getCategories() {
+		Query query = this.manager.createQuery("SELECT c FROM Category c");
+		return query.getResultList();
 	}
 
 }

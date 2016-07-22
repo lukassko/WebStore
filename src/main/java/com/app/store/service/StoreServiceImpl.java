@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.store.entity.Category;
 import com.app.store.entity.Client;
 import com.app.store.entity.Order;
 import com.app.store.entity.Product;
@@ -83,6 +84,14 @@ public class StoreServiceImpl implements StoreService {
 
 	public void saveProduct(Product product) {
 		this.productRepository.save(product);
+	}
+
+	public Category findCategoryById(int categoryId) {
+		return this.productRepository.findCategoryById(categoryId);
+	}
+
+	public List<Category> getAllCategories() {
+		return this.productRepository.getCategories();
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.app.store.web;
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.app.store.entity.Category;
 import com.app.store.entity.Client;
 import com.app.store.entity.Product;
 import com.app.store.service.StoreService;
@@ -28,6 +33,17 @@ public class ProductController {
 		this.storeService = storeService;
 	}
 
+	@InitBinder
+	public void dataBinding(WebDataBinder binder) {
+		//binder.registerCustomEditor(Category.class, "category");
+	}
+	
+	@RequestMapping(value = "/products", method=RequestMethod.GET)
+	public String showAllProductHandler(Model model) {
+		model.addAttribute("products", this.storeService.findAllProduct());
+		return "product/productList";
+	}
+	
 	@RequestMapping(value = "/products/show", method=RequestMethod.GET)
 	public String myCartHandler(@ModelAttribute("clientId") int clientId, Model model) {
 		model.addAttribute("products", this.storeService.findAllProduct());
@@ -40,7 +56,7 @@ public class ProductController {
 
 		Product product = this.storeService.findProductById(productId);
 		model.addAttribute("product", product);
-		return "products/newUpdateProduct";
+		return "product/newUpdateProduct";
 	}
 	
 	@RequestMapping(value = "/products/{productId}/edit", method=RequestMethod.POST)
@@ -58,15 +74,18 @@ public class ProductController {
 	@RequestMapping(value = "/products/new", method=RequestMethod.GET)
 	public String initNewProduct(Model model){
 		Product product = new Product();
+		List<Category> categories = this.storeService.getAllCategories();
+		model.addAttribute("categories", categories);
 		model.addAttribute("product", product);
-		return "products/newUpdateProduct";
+		return "product/newUpdateProduct";
 	}
 	
 	@RequestMapping(value = "/products/new", method=RequestMethod.POST)
 	public String addNewProduct(@ModelAttribute("product") @Validated Product product, BindingResult result,
 			final RedirectAttributes redirectAttributes){
+		
 		if (result.hasErrors()) {
-			return "products/newProduct";
+			return "product/newUpdateProduct";
 		} else {
 			redirectAttributes.addFlashAttribute("css", "success");
 			if (product.isNew())

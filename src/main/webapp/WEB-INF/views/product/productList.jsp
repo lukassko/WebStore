@@ -45,6 +45,10 @@
       <p>Price: ${product.price}</p>
     </div>
     <div class="col-sm-4">
+    <!--  image  -->
+    
+    </div>
+    <div class="col-sm-4">
     	
       <button type="button" class="btn btn-default btn-lg" aria-label="Left Align" 
       	onclick="location.href='/WebStore/clients/${clientId}/orders/new/buy?id=${product.id}'">
