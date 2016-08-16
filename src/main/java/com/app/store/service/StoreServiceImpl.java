@@ -82,6 +82,7 @@ public class StoreServiceImpl implements StoreService {
 		return null;
 	}
 
+	@Transactional
 	public void saveProduct(Product product) {
 		this.productRepository.save(product);
 	}

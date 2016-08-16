@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-<c:choose>
+	<c:choose>
 		<c:when test="${client['new']}">
 			<h1>Add Product</h1>
 		</c:when>
@@ -22,7 +22,7 @@
 	
 	<spring:url value="/product" var="userActionUrl" />
 
-	<form:form class="form-horizontal" method="post" commandName="product">
+	<form:form class="form-horizontal" method="post" commandName="product" enctype="multipart/form-data">
                 
         <form:hidden path="id" />
         
@@ -39,18 +39,17 @@
 		
 		<spring:bind path="category">
 		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Last Name</label>
+			<label class="col-sm-2 control-label">Category</label>
 			<div class="col-sm-10">
-				<form:select path="category" type="text" class="selectpicker  items="${categories}"
+				<form:select path="category" type="text" class="selectpicker"  items="${categories}"
                                 id="category" placeholder="Category" />
 			</div>
 		  </div>
 		</spring:bind>
 		
-		
 		<spring:bind path="price">
 		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Email</label>
+			<label class="col-sm-2 control-label">Price</label>
 			<div class="col-sm-10">
 				<form:input path="price" class="form-control" id="price" />
 				<form:errors path="price" class="control-label" />
@@ -59,12 +58,12 @@
 		</spring:bind>
 		
 		<spring:bind path="image">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="control-label">Select File</label>
-			<div class="col-sm-10">
-				<input id="input-file" type="file" class="file" data-show-preview="false">
-			</div>
-		  </div>
+			<div class="form-group ${status.error ? 'has-error' : ''}">
+				<div class="col-sm-10">
+				    <label class="control-label">Select File</label>
+	   				<input id="file" type="file" class="file">
+	   			</div>
+		    </div>
 		</spring:bind>
 		
 		<div class="form-group">

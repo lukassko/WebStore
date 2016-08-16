@@ -16,7 +16,7 @@
 
 <div class="container">
   <div class="jumbotron">
-    <h1><center>Select product   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h1>
+    <h1><center>Select product</center><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h1>
 
   </div>
 <nav>
@@ -37,21 +37,20 @@
 </nav>
 <c:forEach var="product" items="${products}">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-2">
       <h3>${product.category.name}</h3>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
       <p>Title: ${product.name}</p>
       <p>Price: ${product.price}</p>
     </div>
-    <div class="col-sm-4">
-    <!--  image  -->
-    
+    <div class="col-sm-2">
+    	 <img src="${pageContext.request.contextPath}/productImage?code=${product.id}" 
+    	 		class="img-rounded" alt="Cinque Terre" width="304" height="236">
     </div>
-    <div class="col-sm-4">
-    	
-      <button type="button" class="btn btn-default btn-lg" aria-label="Left Align" 
-      	onclick="location.href='/WebStore/clients/${clientId}/orders/new/buy?id=${product.id}'">
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-default btn-lg" 
+      		  onclick="location.href='/WebStore/clients/${clientId}/orders/new/buy?id=${product.id}'">
        <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Buy
      </button>
     </div>

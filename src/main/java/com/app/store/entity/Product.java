@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Product extends BaseEntity implements Comparable<Product> {
 
-	@NotEmpty
+	@NotNull
 	private String name;
 	
 	@NotNull
