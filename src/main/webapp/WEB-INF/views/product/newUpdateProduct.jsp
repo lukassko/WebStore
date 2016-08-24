@@ -19,8 +19,6 @@
 		</c:otherwise>
 	</c:choose>
 	<br />
-	
-	<spring:url value="/product" var="userActionUrl" />
 
 	<form:form class="form-horizontal" method="post" commandName="product" enctype="multipart/form-data">
                 
@@ -61,7 +59,8 @@
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<div class="col-sm-10">
 				    <label class="control-label">Select File</label>
-	   				<input id="file" type="file" class="file">
+	   				<form:input path = "image" name="image" type="file" class="file" id="image"/>
+	   				<form:errors path="image" class="control-label" />
 	   			</div>
 		    </div>
 		</spring:bind>

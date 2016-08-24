@@ -41,27 +41,31 @@
 	
 	<h2>Orders</h2>
 	
-	<table id="orderList">
-	<tr>
-		<td>Date</td>
-		<td>Total price</td>
-	</tr> 
-	<c:forEach var="order" items="${client.orders}">
-	<tr>
-		<td>${order.date}</td>
-		<td>${order.totalPrice}</td>
-	</tr> 
-	</c:forEach>
+	<table class="table table-striped" id="orderList">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Total price</th>
+			</tr>
+		</thead>
+		<c:forEach var="order" items="${client.orders}">
+			<tr>
+				<td>${order.date}</td>
+				<td>${order.totalPrice}</td>
+			</tr> 
+		</c:forEach>   
 	</table>
-	
-	
-	<table id="productList">
-	<tr>
-		<td>Order ID</td>
-		<td>Category</td>
-		<td>Name</td>
-		<td>Price</td>
-	</tr> 
+				
+	<br>
+	<table class="table table-striped" id="productList">
+		<thead>	
+			<tr>
+				<td>Order ID</td>
+				<td>Category</td>
+				<td>Name</td>
+				<td>Price</td>
+			</tr> 
+		</thead>
 	<c:forEach var="order" items="${client.orders}">
 		<c:forEach var="product" items="${order.products}">
 		<tr>

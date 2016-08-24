@@ -73,7 +73,6 @@ public class ClientController {
 	@RequestMapping(value = "/clients/new", method=RequestMethod.POST)
 	public String addNewClient(@ModelAttribute("client") @Validated Client client, BindingResult result,
 			final RedirectAttributes redirectAttributes){
-		System.out.println("Adding user");
 		if (result.hasErrors()) {
 			return "clients/newClient";
 		} else {

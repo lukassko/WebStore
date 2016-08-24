@@ -25,12 +25,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.store.entity.Category;
 import com.app.store.entity.Client;
 import com.app.store.entity.Product;
+import com.app.store.model.ProductWrapper;
 import com.app.store.service.StoreService;
 
 @Controller
@@ -52,8 +54,8 @@ public class ProductController {
 		}
 	     System.out.println("Target " + target);
 
-		if (target.getClass() == Product.class){
-			binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+		if (target.getClass() == ProductWrapper.class){
+			//binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
 		}
 	}
 	
@@ -124,25 +126,43 @@ public class ProductController {
 		return "product/newUpdateProduct";
 	}
 	
+	
+	@RequestMapping(value = "/products/new2", method=RequestMethod.POST)
+	public String addNewProduct(@RequestParam("image") MultipartFile image){
+		
+		if (image.isEmpty()) {
+			System.out.println("NO IMAGE! :(");
+		} else {
+			System.out.println("IMAGE! :)");
+		}
+		return "redirect:/products";
+	}
+	
 	@RequestMapping(value = "/products/new", method=RequestMethod.POST)
-	public String addNewProduct(@Validated @ModelAttribute("product") Product product, BindingResult result,
-			final RedirectAttributes redirectAttributes){
+	public String addNewProduct1(@Validated @ModelAttribute("product") ProductWrapper productWrapper,
+			@RequestParam("image") MultipartFile image,
+			BindingResult result, final RedirectAttributes redirectAttributes){
 		
-		if (product.getImage() != null) 
-			System.out.println(product.getImage().toString());
-		 else 
-			System.out.println("Empty img");
-		
+		if (image.isEmpty()){
+			System.out.println("Empty image");
+		} else {
+			System.out.println("YES");
+		}
+		if (productWrapper.getFileData() != null) {
+			System.out.println("There is a file with image!");
+		} else {
+			System.out.println("No image! :(");
+		}
 		if (result.hasErrors()) {
 			return "product/newUpdateProduct";
 		} else {
-			redirectAttributes.addFlashAttribute("css", "success");
-			if (product.isNew())
-				redirectAttributes.addFlashAttribute("msg", "Product added successfully!");
-			else 
-				redirectAttributes.addFlashAttribute("msg", "Product updated successfully!");
+//			redirectAttributes.addFlashAttribute("css", "success");
+//			if (product.isNew())
+//				redirectAttributes.addFlashAttribute("msg", "Product added successfully!");
+//			else 
+//				redirectAttributes.addFlashAttribute("msg", "Product updated successfully!");
 		}
-		storeService.saveProduct(product);
+//		storeService.saveProduct(product);
 		return "redirect:/products";
 	}
 }
