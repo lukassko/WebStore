@@ -10,10 +10,6 @@
     
     <context:component-scan base-package="com.app.store.web, com.app.store.model" />
     
-	<mvc:annotation-driven conversion-service="conversionService"/>
-
-	<mvc:resources mapping="/css/**" location="/css/"/>
-	
 	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean" >
 		<property name="converters">
 			<set>
@@ -33,5 +29,9 @@
 	
     <bean id="emailValidator" class="com.app.store.utility.EmailValidator" />
  
+ 	<mvc:resources mapping="/resources/**" location="/resources/"
+					cache-period="31556926"/>
+    
+	<mvc:annotation-driven conversion-service="conversionService"/>
 	
 </beans>   

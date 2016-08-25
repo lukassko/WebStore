@@ -6,7 +6,7 @@
 <head>
 	<%@ page isELIgnored="false" %>
 	<title>Client list</title>
-	<link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" >
+	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 	<%@ page isELIgnored="false" %>
 
 </head>

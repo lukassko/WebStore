@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Main page</title>
-	 <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 </head>
 <body>
  
