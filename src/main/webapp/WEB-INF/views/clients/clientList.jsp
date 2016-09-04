@@ -14,7 +14,7 @@
 	<jsp:include page="../others/header.jsp" />
 	<div class="title-container">
       	<div class="page-title ">Client List</div>
-    	<div class="additional-action"> Add new client </div>
+    	<a class="additional-action" href="${pageContext.request.contextPath}/clients/new"> Add new client </a>
   </div>
   <div class = "main-body">
       <table class="gridtable" >
@@ -34,13 +34,9 @@
 				<td>${client.lastName}</td>
 				<td>${client.email}</td>
 				<td>
-				<spring:url value="${pageContext.request.contextPath}/clients/${client.id}/orders" var="clientUrl" />
-				<spring:url value="${pageContext.request.contextPath}/clients/${client.id}/edit" var="editUrl" />
-				<spring:url value="${pageContext.request.contextPath}/clients/${client.id}/delete" var="deleteUrl" /> 
-							    
-				<button class="btn btn-info"  onclick="location.href='${clientUrl}'">Orders</button>
-				<button class="btn btn-primary"  onclick="location.href='${editUrl}'">Edit</button>
-				<button class="btn btn-danger" onclick="this.disabled=true;post('${deleteUrl}')">Delete</button>
+				<a class="button new-button" href="${pageContext.request.contextPath}/clients/${client.id}/orders">Orders</a>
+				<a class="button edit-button" href="${pageContext.request.contextPath}/clients/${client.id}/edit">Edit client</a>
+				<a class="button delete-button" href="${pageContext.request.contextPath}/clients/${client.id}/delete">Delete client</a>
 				</td>
 			</tr>
 		</c:forEach>	     

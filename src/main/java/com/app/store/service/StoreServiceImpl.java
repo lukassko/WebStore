@@ -18,6 +18,7 @@ import com.app.store.model.ShoppingCart;
 import com.app.store.repository.ClientRepository;
 import com.app.store.repository.OrderRepository;
 import com.app.store.repository.ProductRepository;
+import com.app.store.utility.PaginationResult;
 
 
 @Service
@@ -74,8 +75,9 @@ public class StoreServiceImpl implements StoreService {
 		order.setClient(client);
 		order.setTotalPrice(shoppingCart.getPrice());
 		order.setProducts(productList);
-		this.orderRepository.save(order);
 		shoppingCart.clearCart();
+		this.orderRepository.save(order);
+		
 	}
 
 	public Client findClientByEmail(String email) {
@@ -93,6 +95,11 @@ public class StoreServiceImpl implements StoreService {
 
 	public List<Category> getAllCategories() {
 		return this.productRepository.getCategories();
+	}
+
+	@Transactional
+	public PaginationResult<Order> findOrderForClient(int clientId,int page, int maxResult, int maxNavigationPage) {
+		return this.clientRepository.filterOrders(clientId,page,maxResult, maxNavigationPage);
 	}
 
 }

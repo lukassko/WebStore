@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.store.entity.Client;
+import com.app.store.entity.Order;
 import com.app.store.entity.Product;
 import com.app.store.service.StoreService;
+import com.app.store.utility.PaginationResult;
 
 @Controller
 @RequestMapping(value = "/clients/{clientId}")
@@ -38,9 +41,17 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/orders", method=RequestMethod.GET)
-	public String getAllOrdersHandler(@PathVariable("clientId") int clientId, Model model) {
+	public String getFilteredOrdersHandler(@PathVariable("clientId") int clientId, 
+            @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 		Client client = storeService.findClientById(clientId);
+		
+		final int maxResult = 2;
+		final int maxNavigationPage = 4;
+		
+		PaginationResult<Order> paginationResult = storeService.findOrderForClient(clientId, 
+				page, maxResult, maxNavigationPage);
 		model.addAttribute("client", client);
+		model.addAttribute("orders", paginationResult);
 		return "orders/ordersDetail";
 	}
 	

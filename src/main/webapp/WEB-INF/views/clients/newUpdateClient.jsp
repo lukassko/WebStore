@@ -6,87 +6,69 @@
 <head>
 	<%@ page isELIgnored="false" %>
 	<title>Client detail</title>
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-<c:choose>
-		<c:when test="${client['new']}">
-			<h1>Add User</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>Update User</h1>
-		</c:otherwise>
-	</c:choose>
-	<br />
-	
-	<spring:url value="/clients" var="userActionUrl" />
-
-	<form:form class="form-horizontal" method="post" commandName="client">
+	<jsp:include page="../others/header.jsp" />
+    
+    <div class="title-container">
+	    <div class="page-title ">
+	    	<c:choose>
+				<c:when test="${client['new']}">
+					Add User
+				</c:when>
+				<c:otherwise>
+					Update User
+			</c:otherwise>
+		</c:choose>
+		</div>
+    </div>
+    <div class = "main-body">
+	<form:form  method="post" commandName="client">
                 
         <form:hidden path="id" />
         
         <spring:bind path="name">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Name</label>
-			<div class="col-sm-10">
-				<form:input path="name" type="text" class="form-control" 
-                                id="name" placeholder="Name" />
-				<form:errors path="name" class="control-label" />
-			</div>
-		  </div>
+			<label>Name</label>
+			<form:input path="name" type="text" id="name" placeholder="Name" />
+			<form:errors path="name"/>
 		</spring:bind>
 		
 		<spring:bind path="name">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Last Name</label>
-			<div class="col-sm-10">
-				<form:input path="lastName" type="text" class="form-control" 
-                                id="lastName" placeholder="Last name" />
-				<form:errors path="lastName" class="control-label" />
-			</div>
-		  </div>
+		  <!--   <div class="form-group ${status.error ? 'has-error' : ''}">-->
+			<label>Last Name</label>
+			<form:input path="lastName" type="text" id="lastName" placeholder="Last name" />
+			<form:errors path="lastName"/>
+
 		</spring:bind>
 		
 		
 		<spring:bind path="email">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Email</label>
-			<div class="col-sm-10">
-				<form:input path="email" class="form-control" 
-                                id="email" placeholder="Email" />
-				<form:errors path="email" class="control-label" />
-			</div>
-		  </div>
+			<label>Email</label>
+			<form:input type="text" path="email" id="email" placeholder="Email" />
+			<form:errors path="email" class="control-label" />
 		</spring:bind>
 		
 		<spring:bind path="password">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Password</label>
-			<div class="col-sm-10">
-				<form:password path="password" class="form-control" 
-                                id="password" placeholder="password" />
-				<form:errors path="password" class="control-label" />
-			</div>
-		  </div>
+			<label>Password</label>
+
+			<form:password path="password"  id="password" placeholder="password" />
+			<form:errors path="password" class="control-label" />
+
 		</spring:bind>
 		
-		<div class="form-group">
-		  <div class="col-sm-offset-2 col-sm-10">
 			<c:choose>
 			  <c:when test="${client['new']}">
-			     <button type="submit" class="btn-lg btn-primary pull-right">Add
-                             </button>
+			     <input type="submit" value="Add">
 			  </c:when>
 			  <c:otherwise>
-			     <button type="submit" class="btn-lg btn-primary pull-right">Update
-                             </button>
+			     <input type="submit" value="Update">
 			  </c:otherwise>
 			</c:choose>
-		  </div>
-		</div>
-		
 	</form:form>
 	</div>
+ 	
+    <jsp:include page="../others/footer.jsp" />
+ 
 </body>
 </html>

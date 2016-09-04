@@ -16,7 +16,6 @@ import com.app.store.entity.Product;
 public class ShoppingCartImpl implements ShoppingCart {
 
 	private Map<Product,Integer> products;
-	//private List<Product> products;
 	private BigDecimal totalPrice;
 	private Order order;
 	
@@ -74,6 +73,7 @@ public class ShoppingCartImpl implements ShoppingCart {
 	}
 
 	private void calculatePrice(){
+		this.totalPrice = BigDecimal.ZERO;
 		for (Map.Entry<Product, Integer> entry : products.entrySet()) {
 			Product product = entry.getKey();
 			Integer quantity = entry.getValue();

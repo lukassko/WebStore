@@ -36,7 +36,13 @@ public class ClientController {
 		binder.setDisallowedFields("id");
 		binder.addValidators(emailValidator);
 	}
-			
+		
+	@RequestMapping(value = "/login", method=RequestMethod.GET)
+	public String loginHandler() {
+		return "others/login";
+	}
+	
+	
 	@RequestMapping(value = "/clients/{clientId}/edit", method=RequestMethod.GET)
 	public String getClientsDetail(@PathVariable("clientId") int clientId, Model model) {
 		System.out.println("EDIT");

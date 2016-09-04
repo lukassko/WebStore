@@ -4,7 +4,8 @@
 
 <div class="header-container">
 	<div class="main-name"> Online Shop </div>
-</div>
-<div class="log-info">
-	<a href="${pageContext.request.contextPath}/clients">Login</a>
+	<div id="log" class="log-info">
+		<a href="${pageContext.request.contextPath}/login">Login</a>
+	</div>
+	
 </div>

@@ -1,55 +1,53 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <html>
 <head>
 	<%@ page isELIgnored="false" %>
 	<title>My Cart</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <spring:url value="/" var="urlHome" />
-	<spring:url value="/clients/new" var="urlAddUser" />
-	
-	<nav class="navbar navbar-inverse ">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="${urlHome}">Main</a>
-			</div>
-			<div id="navbar">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="${urlAddUser}">Add Client</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	
+   	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="../others/header.jsp" />
 
-<div class="container">
-	<h2>Shopping Cart</h2>
-	
-	<table class="table table-striped">
-				<thead>
-				<tr>
-					<th>Name</th>
-					<th>Price</th>
-				</tr>
-				</thead>
-					<c:forEach var="product" items="${products}">
-						<tr>
-							<td>${product.name}</td>
-							<td>${product.price}</td>
-						</tr>
-					</c:forEach>	     
-			</table>
-			
-	<spring:url value="/clients/${client.id}/orders/new/showProducts" var="productUrl" />
-	<spring:url value="/clients/${client.id}/orders/new/acceptOrder" var="buyUrl" />
-							    
-	<button class="btn btn-info"  onclick="location.href='${productUrl}'">Show product</button>
-	<button class="btn btn-info"  onclick="location.href='${buyUrl}'">Buy product</button>
-
-</div>
+	<div class="title-container">
+      	<div class="page-title ">Shopping list</div>
+      	<a class="additional-action" href="${pageContext.request.contextPath}/clients/${client.id}/orders/new/showProducts">Show product</a>
+  </div>
+  <div class = "main-body">
+  	<table class="gridtable" >
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<c:forEach var="product" items="${products}">
+			<tr>
+				<td>${product.name}</td>
+				<td>${product.price}</td>
+			</tr>
+		</c:forEach>
+		<c:if test="${fn:length(products)>0}">
+		   <tr class ="noBorder">
+				<td colspan="2">
+					<a class="cell-button" 
+						href="${pageContext.request.contextPath}/clients/${client.id}/orders/new/acceptOrder">Buy</a>
+				</td>
+			</tr> 
+		</c:if>
+		<c:if test="${fn:length(products)==0}">
+		   <tr class="emptyRow">
+				<td colspan="2">
+					<label>Empty list</label>
+				</td>
+			</tr> 
+		</c:if>
+		
+		</table>
+		
+  </div>
+  <jsp:include page="../others/footer.jsp" />
 </body>
 </html>

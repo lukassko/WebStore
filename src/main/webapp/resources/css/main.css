@@ -5,7 +5,7 @@ body {
     padding:0px 5px;
    
 }
- .footer-container {
+.footer-container {
     text-align: center;
     margin-top: 10px;
     padding: 5px 0px 0px 0px;
@@ -34,7 +34,8 @@ body {
     position: relative;
     background: #dbd7d7;
     color: black;
-	}
+}
+
 .page-title {
     font-size: 150%;
     margin:10px 10px 0px 0px;
@@ -74,10 +75,111 @@ body {
     text-align: center;
 }
 
+.page-navigator {
+   display: block;
+   margin: 0 auto; 
+   position: absolute;
+   left: 50%;
+}
+
+label {
+    display: inline-block;
+	font-size:100%;
+}
+
+.button {
+	border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.cell-button:hover, .button:hover {
+	opacity: 0.6;
+}
+
+.new-button {
+    background-color: #4CAF50;
+}
+
+.edit-button {
+    background-color: #8080ff;
+}
+
+.delete-button {
+	background-color: #ff3333;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    background-color: #e6e6ff;
+}
+
+.cell-button {
+	width: 100%;
+	text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    cursor: pointer;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #8080ff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #b3b3ff;
+}
+
+form {
+	background-color: #dedede;
+    margin: 0 auto;
+    width: 400px;
+    padding: 1em;
+    border: 1px solid #CCC;
+    vertical-align: middle;
+}
 
 table.gridtable {
 	font-family: verdana,arial,sans-serif;
 	font-size:11px;
+	min-width: 200px;
 	color:#333333;
 	border-width: 1px;
 	border-color: #666666;
@@ -86,6 +188,7 @@ table.gridtable {
   	margin-left:auto; 
     margin-right:auto; 
 }
+
 table.gridtable th {
 	border-width: 1px;
 	padding: 8px;
@@ -93,10 +196,18 @@ table.gridtable th {
 	border-color: #666666;
 	background-color: #dedede;
 }
+
 table.gridtable td {
 	border-width: 1px;
 	padding: 8px;
 	border-style: solid;
 	border-color: #666666;
 	background-color: #ffffff;
+}
+
+tr.noBorder td {border: 0; }
+tr.emptyRow td {text-align: center; }
+
+#log a:visited {
+    color: white;
 }
