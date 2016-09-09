@@ -22,6 +22,9 @@ public class Client extends BaseEntity {
 	@NotEmpty
 	private String lastName;
 	
+	@NotEmpty
+	private String role;
+	
 	private String email;
 	
 	private String password;
@@ -79,6 +82,14 @@ public class Client extends BaseEntity {
 		this.password = password;
 	}
 	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public String toString(){
 		return "Name " + this.name + "; Last name " + this.lastName;
 	}

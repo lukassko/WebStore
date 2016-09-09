@@ -11,14 +11,14 @@
 <body>
     
     <div class = "main-body">
-		<form  method="get" action="${pageContext.request.contextPath}/clients">
+		<form  method="POST" action="${pageContext.request.contextPath}/j_spring_security_check">
 	                
 			<label>Email</label>
-			<input type="text" name="email" id="email" placeholder="Email" require>
+			<input type="text" name="j_username" id="email" placeholder="Email" require>
 	
 			<label>Password</label>
-			<input name="password"  type="password" id="password" placeholder="Password" require>
-	
+			<input type="password" name="j_password" id="password" placeholder="Password" require>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="submit" value="Login">
 		</form>
 	</div>

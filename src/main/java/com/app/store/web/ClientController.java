@@ -45,7 +45,6 @@ public class ClientController {
 	
 	@RequestMapping(value = "/clients/{clientId}/edit", method=RequestMethod.GET)
 	public String getClientsDetail(@PathVariable("clientId") int clientId, Model model) {
-		System.out.println("EDIT");
 		Client client = this.storeService.findClientById(clientId);
 		model.addAttribute("client", client);
 		return "clients/newUpdateClient";
@@ -70,7 +69,6 @@ public class ClientController {
 	
 	@RequestMapping(value = "/clients/new", method=RequestMethod.GET)
 	public String initNewClient(Model model){
-		System.out.println("GET execute /clients/new");
 		Client client = new Client();
 		model.addAttribute("client", client);
 		return "clients/newUpdateClient";
@@ -80,7 +78,7 @@ public class ClientController {
 	public String addNewClient(@ModelAttribute("client") @Validated Client client, BindingResult result,
 			final RedirectAttributes redirectAttributes){
 		if (result.hasErrors()) {
-			return "clients/newClient";
+			return "clients/newUpdateClient";
 		} else {
 			redirectAttributes.addFlashAttribute("css", "success");
 			if (client.isNew())

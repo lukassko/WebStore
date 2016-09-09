@@ -11,6 +11,8 @@ public interface ClientRepository {
 
 	public Client findById(int cientId);
 	
+	public Client findByEmail(String email);
+	
 	public Collection<Order> findAllOrders(int clientId);
 	
 	public Collection<Product> findAllProduct(int orderId);

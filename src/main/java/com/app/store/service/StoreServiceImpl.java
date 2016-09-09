@@ -81,7 +81,7 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	public Client findClientByEmail(String email) {
-		return null;
+		return this.clientRepository.findByEmail(email);
 	}
 
 	@Transactional

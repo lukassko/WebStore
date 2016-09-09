@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS client (
  	last_name VARCHAR(30),
  	email VARCHAR(50),
  	password VARCHAR(50),
+ 	role VARCHAR(50),
  	INDEX(last_name)
 ) engine=InnoDB;
 
