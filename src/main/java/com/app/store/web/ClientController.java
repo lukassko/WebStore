@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -42,6 +43,11 @@ public class ClientController {
 		return "others/login";
 	}
 	
+	@RequestMapping(value = "/fail", method=RequestMethod.GET)
+	public String failHandler() {
+		return "others/fail";
+	}
+	
 	
 	@RequestMapping(value = "/clients/{clientId}/edit", method=RequestMethod.GET)
 	public String getClientsDetail(@PathVariable("clientId") int clientId, Model model) {
@@ -53,6 +59,9 @@ public class ClientController {
 	@RequestMapping(value = "/clients/{clientId}/edit", method=RequestMethod.POST)
 	public String updateClientsDetail(@PathVariable("clientId") int clientId, @Valid Client client, BindingResult result) {
 		if (result.hasErrors()) {
+		for (ObjectError o : result.getAllErrors()) {
+			System.out.println(o.toString());
+		}
 			return "clients/newUpdateClient";
 		} else {
 			client.setId(clientId);

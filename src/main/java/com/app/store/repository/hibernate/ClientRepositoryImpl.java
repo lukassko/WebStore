@@ -25,16 +25,19 @@ public class ClientRepositoryImpl implements ClientRepository {
 	private EntityManager manager;
 	
 	public Client findById(int clientId) {
-		//Client client = manager.find(Client.class, clientId);
 		Query query = this.manager.createQuery("SELECT c FROM Client c WHERE c.id = :id");
 		query.setParameter("id", clientId);
 		return (Client)query.getSingleResult();
 	}
 	
 	public Client findByEmail(String email) {
+		System.out.println(email);
 		Query query = this.manager.createQuery("SELECT c FROM Client c WHERE c.email = :email");
 		query.setParameter("email", email);
-		return (Client)query.getSingleResult();
+		System.out.println("Searching...");
+		Client client =  (Client)query.getSingleResult();
+		System.out.println(client.getEmail());
+		return client;
 	}
 
 	public Collection<Order> findAllOrders(int clientId) {

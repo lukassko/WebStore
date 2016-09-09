@@ -18,12 +18,14 @@ public class UserDataProvider implements UserDetailsService {
 	private StoreService storeService;
 	
 	public UserDetails loadUserByUsername(String email) {
+		
 		Client client = this.storeService.findClientByEmail(email);
 		
 		if (client == null) {
+			System.out.println("NULL client");
 			throw new UsernameNotFoundException("User for email " + email + " not found.");
 		}
-		
+		System.out.println("Client found " + client.getEmail());
 		Set<SimpleGrantedAuthority> authorities = new HashSet<SimpleGrantedAuthority>();
 		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
 		authorities.add(authority);

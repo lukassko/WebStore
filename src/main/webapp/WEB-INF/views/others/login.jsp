@@ -14,10 +14,10 @@
 		<form  method="POST" action="${pageContext.request.contextPath}/j_spring_security_check">
 	                
 			<label>Email</label>
-			<input type="text" name="j_username" id="email" placeholder="Email" require>
+			<input type="text" name="j_username" id="j_username" placeholder="Email" require>
 	
 			<label>Password</label>
-			<input type="password" name="j_password" id="password" placeholder="Password" require>
+			<input type="password" name="j_password" id="j_password" placeholder="Password" require>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="submit" value="Login">
 		</form>

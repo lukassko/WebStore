@@ -22,8 +22,7 @@ public class Client extends BaseEntity {
 	@NotEmpty
 	private String lastName;
 	
-	@NotEmpty
-	private String role;
+	private String role = "USER";
 	
 	private String email;
 	
