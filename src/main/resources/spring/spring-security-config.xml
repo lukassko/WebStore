@@ -8,7 +8,11 @@
    
    <http>
  
-    <form-login login-page="/login/" authentication-failure-url="/fail/" login-processing-url="/j_spring_security_check"/>
+    <form-login login-page="/login/" 
+    	authentication-failure-url="/fail/" 
+    	username-parameter="username"
+    	password-parameter="password"
+    	login-processing-url="/j_spring_security_check" />
  	
     <logout logout-success-url="/"/>
  

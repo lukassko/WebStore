@@ -31,12 +31,9 @@ public class ClientRepositoryImpl implements ClientRepository {
 	}
 	
 	public Client findByEmail(String email) {
-		System.out.println(email);
 		Query query = this.manager.createQuery("SELECT c FROM Client c WHERE c.email = :email");
 		query.setParameter("email", email);
-		System.out.println("Searching...");
 		Client client =  (Client)query.getSingleResult();
-		System.out.println(client.getEmail());
 		return client;
 	}
 

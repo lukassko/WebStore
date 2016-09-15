@@ -22,12 +22,12 @@ public class UserDataProvider implements UserDetailsService {
 		Client client = this.storeService.findClientByEmail(email);
 		
 		if (client == null) {
-			System.out.println("NULL client");
 			throw new UsernameNotFoundException("User for email " + email + " not found.");
 		}
-		System.out.println("Client found " + client.getEmail());
+		String role = client.getRole();
+		
 		Set<SimpleGrantedAuthority> authorities = new HashSet<SimpleGrantedAuthority>();
-		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+role);
 		authorities.add(authority);
 		
 		return new User(client.getName(), client.getPassword(), true, true, true, true, authorities);
