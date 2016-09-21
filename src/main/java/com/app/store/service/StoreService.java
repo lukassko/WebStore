@@ -28,7 +28,7 @@ public interface StoreService {
 	
 	public Product findProductById(int productId);
 	
-	public void buyProducts(Client client, ShoppingCart shoppingCart);
+	public void buyProducts(ShoppingCart shoppingCart);
 	
 	public void saveProduct(Product product);
 	

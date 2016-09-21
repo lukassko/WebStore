@@ -30,7 +30,8 @@ public class UserDataProvider implements UserDetailsService {
 		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+role);
 		authorities.add(authority);
 		
-		return new User(client.getName(), client.getPassword(), true, true, true, true, authorities);
+		// was -> client.getName()
+		return new User(client.getEmail(), client.getPassword(), true, true, true, true, authorities);
 	}
 
 }

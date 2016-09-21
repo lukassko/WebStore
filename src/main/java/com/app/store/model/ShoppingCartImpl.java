@@ -17,18 +17,13 @@ public class ShoppingCartImpl implements ShoppingCart {
 
 	private Map<Product,Integer> products;
 	private BigDecimal totalPrice;
-	private Order order;
-	
+	private Client client;
+
 	public ShoppingCartImpl () {
 		products = new HashMap<Product, Integer>();
 		totalPrice = BigDecimal.ZERO;
-		order = new Order();
 	}
-	
-	public void setClient(Client client) {
-		this.order.setClient(client);
-	}
-	
+
 	public void addProduct(Product product) {
 		if (this.products.containsKey(product)){
 			int quantity = this.products.get(product);
@@ -60,14 +55,6 @@ public class ShoppingCartImpl implements ShoppingCart {
 		return this.totalPrice;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
 	public void clearCart() {
 		this.products.clear();
 	}
@@ -80,6 +67,14 @@ public class ShoppingCartImpl implements ShoppingCart {
 			BigDecimal price = product.getPrice().multiply(new BigDecimal(quantity));
 			this.totalPrice = this.totalPrice.add(price);
 		}
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Client getClient() {
+		return this.client;
 	}
 
 }

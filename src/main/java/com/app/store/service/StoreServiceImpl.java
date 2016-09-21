@@ -67,10 +67,11 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Transactional
-	public void buyProducts(Client client, ShoppingCart shoppingCart) {
+	public void buyProducts(ShoppingCart shoppingCart) {
 		Map<Product,Integer> products = shoppingCart.getProducts();
 		List<Product> productList = new LinkedList<Product>();
 		productList.addAll(products.keySet());
+		Client client = shoppingCart.getClient();
 		Order order = new Order();
 		order.setClient(client);
 		order.setTotalPrice(shoppingCart.getPrice());
