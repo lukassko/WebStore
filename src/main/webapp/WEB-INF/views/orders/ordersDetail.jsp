@@ -59,7 +59,7 @@
            <c:forEach items="${orders.navigationPage}" var = "page">
            <%System.out.println(page);%>
                <c:if test="${page != -1 }">
-                 <a href="${pageContext.request.contextPath}/clients/${client.id}/orders?page=${page}">${page}</a>
+                 <a href="${pageContext.request.contextPath}/showOrders?page=${page}">${page}</a>
                </c:if>
                <c:if test="${page == -1 }">
                  <span> ... </span>
@@ -73,7 +73,7 @@
 
 		<span class="page-title ">Orders detail</span>
 		<div align="right"><a class="button new-button" 
-					href="${pageContext.request.contextPath}/clients/${client.id}/orders/new/shoppingCart">New order</a>
+					href="${pageContext.request.contextPath}/showProductInCart">New order</a>
 					</div>	
 	<hr>
 	

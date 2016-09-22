@@ -50,7 +50,7 @@
     </div>
     <div class="col-sm-2">
       <button type="button" class="btn btn-default btn-lg" 
-      		  onclick="location.href='/WebStore/clients/${clientId}/orders/new/buy?id=${product.id}'">
+      		  onclick="location.href='/WebStore/addProductToCart?id=${product.id}'">
        <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Buy
      </button>
     </div>

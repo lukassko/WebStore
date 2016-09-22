@@ -13,7 +13,7 @@
 
 	<div class="title-container">
       	<div class="page-title ">Shopping list</div>
-      	<a class="additional-action" href="${pageContext.request.contextPath}/clients/${client.id}/orders/new/showProducts">Show product</a>
+      	<a class="additional-action" href="${pageContext.request.contextPath}/showAllProducts">Show product</a>
   </div>
   <div class = "main-body">
   	<table class="gridtable" >
@@ -33,7 +33,7 @@
 		   <tr class ="noBorder">
 				<td colspan="2">
 					<a class="cell-button" 
-						href="${pageContext.request.contextPath}/clients/${client.id}/orders/new/acceptOrder">Buy</a>
+						href="${pageContext.request.contextPath}/acceptOrder">Buy</a>
 				</td>
 			</tr> 
 		</c:if>

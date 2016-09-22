@@ -12,9 +12,11 @@
     	authentication-failure-url="/fail/" 
     	username-parameter="username"
     	password-parameter="password"
+    	default-target-url="/clientPanel"
     	login-processing-url="/j_spring_security_check" />
  	
-    <logout logout-success-url="/"/>
+    <logout logout-url="/j_spring_security_logout"
+    		logout-success-url="/"/>
  
 	</http>
 	 

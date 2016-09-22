@@ -92,10 +92,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/products/show", method=RequestMethod.GET)
-	public String myCartHandler(@ModelAttribute("clientId") int clientId, Model model) {
-		
+	public String myCartHandler(Model model) {
 		model.addAttribute("products", this.storeService.findAllProduct());
-		model.addAttribute("clientId",clientId);
 		return "product/productList";
 	}
 	

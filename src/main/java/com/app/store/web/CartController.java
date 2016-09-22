@@ -35,7 +35,7 @@ public class CartController {
 	}
 		
 	@ModelAttribute("client")
-	public Client findClientHandler(@PathVariable("clientId") int clientId){
+	public Client findClientHandler(){
 		Client client = shoppingCart.getClient();
 		return client;
 	}
@@ -59,9 +59,14 @@ public class CartController {
 	}
 	
 	@RequestMapping(value = "/acceptOrder",  method=RequestMethod.GET)
-	public String acceptOrderHandler(@PathVariable("clientId") int clientId) {
+	public String acceptOrderHandler() {
 		this.storeService.buyProducts(shoppingCart);
-		return "redirect:/orders";
+		return "redirect:/showOrders";
+	}
+	
+	@RequestMapping(value = "/clientPanel",  method=RequestMethod.GET)
+	public String clientPanelHandler() {
+		return "redirect:/showOrders";
 	}
 	
 	@RequestMapping(value = "/showOrders", method=RequestMethod.GET)
