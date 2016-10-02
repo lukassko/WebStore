@@ -39,7 +39,7 @@ public class ClientController {
 		binder.setDisallowedFields("id");
 		binder.addValidators(emailValidator);
 	}
-		
+
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String loginHandler() {
 		return "others/login";

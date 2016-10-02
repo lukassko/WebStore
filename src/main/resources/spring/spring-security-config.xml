@@ -8,15 +8,14 @@
    
    <http>
  
-    <form-login login-page="/login/" 
-    	authentication-failure-url="/fail/" 
-    	username-parameter="username"
-    	password-parameter="password"
-    	default-target-url="/clientPanel"
-    	login-processing-url="/j_spring_security_check" />
- 	
-    <logout logout-url="/j_spring_security_logout"
-    		logout-success-url="/"/>
+	    <form-login login-page="/login/" 
+	    	authentication-failure-url="/fail/" 
+	    	username-parameter="username"
+	    	password-parameter="password"
+	    	default-target-url="/clientPanel"
+	    	login-processing-url="/j_spring_security_check" />
+	 	
+	    <logout logout-success-url="/"></logout>
  
 	</http>
 	 
@@ -27,5 +26,6 @@
 	</authentication-manager>
 	 
 	<beans:bean id="myUserDetailsProvider" class="com.app.store.service.UserDataProvider" />
+	
 	
 </beans:beans>

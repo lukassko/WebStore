@@ -1,62 +1,107 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
 	<%@ page isELIgnored="false" %>
-	<title>Products</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    
-    <spring:url value="/" var="urlHome" />
-	<spring:url value="/clients/new" var="urlAddUser" />
+	<title>Order informations</title>
+	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+	 <script type="text/javascript">
+	 
+	 function ajaxCall() {
+		 var xmlhttp = new XMLHttpRequest();
+		 
+		 var searchString = document.getElementById("searchByString").value;
+	     var tmp = document.getElementById("category");
+	     var category = tmp.options[tmp.selectedIndex].value;
+	     var ajaxUrl = "${pageContext.request.contextPath}/searchProductBy?category=" + category + "&searchString=" + searchString;
+
+		 xmlhttp.onreadystatechange = function() {
+			 var xmlStatus = xmlhttp.status
+		     if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+		        if (xmlStatus == 200) {
+		        	renderView(xmlhttp.responseText);
+		        }
+		        else {
+		        	badAjaxResponse(xmlStatus);
+		        }
+		     }
+		 };
+		console.log(ajaxUrl)
+		 xmlhttp.open("GET", ajaxUrl, true);
+		 xmlhttp.send();
+	}
 	
+	 function renderView (response) {
+		 document.getElementById('productsList').innerHTML=response;  
+	 }
+	 
+	 function badAjaxResponse(status) {
+		 console.log(status);
+	 }
+	 </script> 
 </head>
 <body>
-
-<div class="container">
-  <div class="jumbotron">
-    <h1><center>Select product</center><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h1>
-
-  </div>
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-<c:forEach var="product" items="${products}">
-  <div class="row">
-    <div class="col-sm-2">
-      <h3>${product.category.name}</h3>
-    </div>
-    <div class="col-sm-2">
-      <p>Title: ${product.name}</p>
-      <p>Price: ${product.price}</p>
-    </div>
-    <div class="col-sm-2">
-    	 <img src="${pageContext.request.contextPath}/productImage?code=${product.id}" 
-    	 		class="img-rounded" alt="Cinque Terre" width="304" height="236">
-    </div>
-    <div class="col-sm-2">
-      <button type="button" class="btn btn-default btn-lg" 
-      		  onclick="location.href='/WebStore/addProductToCart?id=${product.id}'">
-       <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Buy
-     </button>
-    </div>
-  </div>
-  </c:forEach>
-</div>
-
+	<c:if test="${not empty msg}">
+	    <div class="alert alert-${css} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" 
+	                                aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<strong>${msg}</strong>
+			    </div>
+		</c:if>
+		
+	<jsp:include page="../others/header.jsp" />
+	<div class="title-container">
+      	<div class="page-title ">Client detail</div>
+    	<div class="additional-action">${client.name}  ${client.lastName}</div>
+    	
+  	</div>
+  
+  	<div class="help-panel">
+	  	<div class="help-panel-member">
+	  		<label>Sort by:</label>
+	  		 <select id="category">
+			  <option value="category">Category</option>
+			  <option value="name">Name</option>
+			</select>
+		</div>
+		<div class="help-panel-member">
+	  		<label>Search: </label>  
+	  		 <input id="searchByString" style="width: 200px; padding:4px;margin:0;" type="text" name="search" placeholder="Search..">
+		</div>
+		<div class="help-panel-member">
+			<button type="button" class="find-button" onclick="ajaxCall()">Find</button> 
+		</div>
+  	</div>
+	<div id="productsList" class = "main-body">
+      <table class="gridtable" >
+		<thead>
+           <tr>
+              <th>Category</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Image</th>
+              <th>Action</th>
+           </tr>
+		</thead>
+		<c:forEach var="product" items="${products}">
+			<tr>
+				<td>${product.category.name}</td>
+				<td>${product.name}</td>
+				<td>${product.price}</td>
+				<td>
+				 <img src="${pageContext.request.contextPath}/productImage?code=${product.id}" 
+    	 				width="100" height="80">
+				</td>
+				<td>
+					<a class="button new-button" href="${pageContext.request.contextPath}/addProductToCart?id=${product.id}">Buy</a>
+				</td>
+			</tr> 
+		</c:forEach> 
+	</table>
+	</div>
+   <jsp:include page="../others/footer.jsp" />
 </body>
 </html>

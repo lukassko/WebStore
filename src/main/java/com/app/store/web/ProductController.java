@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.store.entity.Category;
@@ -49,10 +50,10 @@ public class ProductController {
 	public void dataBinding(WebDataBinder binder) {
 		Object target = binder.getTarget();
 		if (target == null) {
-			System.out.println("Null target");
+			//System.out.println("Null target");
 	        return;
 		}
-	     System.out.println("Target " + target);
+	     //System.out.println("Target " + target);
 
 		if (target.getClass() == ProductWrapper.class){
 			//binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
@@ -68,6 +69,13 @@ public class ProductController {
 		}
 		return tmp;
 	}
+	
+	@RequestMapping(value = { "/searchProductBy" }, method = RequestMethod.GET)
+    public ModelAndView searchProductByHandler(Model model, @RequestParam("category") String category,
+    									@RequestParam("searchString") String searchString) {
+		Collection<Product> products = this.storeService.findProductsByRequirements(category, searchString);
+		return new ModelAndView("product/subProducList", "products", products);
+    }
 	
 	@RequestMapping(value = { "/productImage" }, method = RequestMethod.GET)
     public void productImage(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -86,7 +94,6 @@ public class ProductController {
 	
 	@RequestMapping(value = "/products", method=RequestMethod.GET)
 	public String showAllProductHandler(Model model) {
-		System.out.println("Show all products");
 		model.addAttribute("products", this.storeService.findAllProduct());
 		return "product/productList";
 	}

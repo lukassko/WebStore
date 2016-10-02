@@ -103,4 +103,8 @@ public class StoreServiceImpl implements StoreService {
 		return this.clientRepository.filterOrders(clientId,page,maxResult, maxNavigationPage);
 	}
 
+	public Collection<Product> findProductsByRequirements(String category, String searchSring) {
+		return this.productRepository.findByRequirements(category, searchSring);
+	}
+
 }

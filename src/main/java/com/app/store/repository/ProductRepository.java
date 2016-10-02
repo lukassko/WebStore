@@ -19,4 +19,6 @@ public interface ProductRepository {
 	Category findCategoryById(int categoryId);
 	
 	List<Category> getCategories();
+	
+	List<Product> findByRequirements(String category, String searchString);
 }

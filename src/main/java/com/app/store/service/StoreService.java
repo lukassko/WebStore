@@ -37,4 +37,6 @@ public interface StoreService {
 	public List<Category> getAllCategories () ;
 	
 	public PaginationResult<Order> findOrderForClient(int clientId,int page, int maxResult, int maxNavigationPage);
+
+	public Collection<Product> findProductsByRequirements(String category, String searchSring);
 }
