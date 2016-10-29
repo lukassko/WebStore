@@ -4,36 +4,32 @@ import java.math.BigDecimal;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.store.entity.BaseEntity;
 import com.app.store.entity.Category;
 import com.app.store.entity.Product;
 
-public class ProductWrapper {
-
-	private String name;
-
-	private BigDecimal price;
+public class ProductWrapper extends BaseEntity {
 	
+	private BigDecimal price;
 	private Category category;
 	
 	private MultipartFile image;
-	
+
 	public ProductWrapper() {
-    }
+	}
 	
 	public ProductWrapper(Product product) {
-		this.name = product.getName();
-		this.price = product.getPrice();
-		this.category = product.getCategory();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+		this.id=product.getId();
+		this.price=product.getPrice();
+		this.category=product.getCategory();
+    }
+	
+	public ProductWrapper(int id, BigDecimal price, Category category) {
+		this.id=id;
+		this.price=price;
+		this.category=category;
+    }
+	
 	public BigDecimal getPrice() {
 		return price;
 	}
@@ -50,12 +46,12 @@ public class ProductWrapper {
 		this.category = category;
 	}
 
-	public MultipartFile getFileData() {
+	public MultipartFile getImage() {
 		return image;
 	}
 
-	public void setFileData(MultipartFile fileData) {
-		this.image = fileData;
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 	
 }

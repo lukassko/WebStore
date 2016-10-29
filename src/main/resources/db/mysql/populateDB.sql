@@ -9,7 +9,8 @@ INSERT IGNORE INTO product (id, name, price, category_id) VALUES (2, 'Wikings', 
 INSERT IGNORE INTO product (id, name, price, category_id) VALUES (3, 'Game', 18.99, 2);
 INSERT IGNORE INTO product (id, name, price, category_id) VALUES (4, 'Sheep', 39.99, 2);
 
-INSERT IGNORE INTO client VALUES (1, 'Lukasz', 'Szczepanski', 'lukasz@gmail.com', 'szczepek', 'USER');
+INSERT IGNORE INTO client VALUES (1, 'Lukasz', 'Szczepanski', 'lukasz@gmail.com', 'szczepek', 'ADMIN');
+INSERT IGNORE INTO client VALUES (1, 'Michal', 'Roman', 'lukasz@gmail.com', 'elo', 'USER');
 
 INSERT IGNORE INTO orders VALUES (1 ,'2016-05-26', 29.99,1 );
 INSERT IGNORE INTO orders VALUES (2 ,'2016-05-29', 29.99,1 );

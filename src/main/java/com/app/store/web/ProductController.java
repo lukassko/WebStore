@@ -50,13 +50,10 @@ public class ProductController {
 	public void dataBinding(WebDataBinder binder) {
 		Object target = binder.getTarget();
 		if (target == null) {
-			//System.out.println("Null target");
-	        return;
-		}
-	     //System.out.println("Target " + target);
-
-		if (target.getClass() == ProductWrapper.class){
-			//binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+            return;
+        }
+		if (target.getClass() == Product.class){
+			binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
 		}
 	}
 	
@@ -104,22 +101,21 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping(value = "/products/{productId}/edit", method=RequestMethod.GET)
-	public String getProductDetail(@PathVariable("productId") int productId, Model model) {
-
+	@RequestMapping(value = "/products/edit", method=RequestMethod.GET)
+	public String getProductDetail(@RequestParam(value = "id", defaultValue = "") int productId, Model model) {
 		Product product = this.storeService.findProductById(productId);
 		model.addAttribute("product", product);
 		return "product/newUpdateProduct";
 	}
 	
-	@RequestMapping(value = "/products/{productId}/edit", method=RequestMethod.POST)
-	public String updateProductDetail(@PathVariable("productId") int productId, @Valid Product product, BindingResult result) {
+	@RequestMapping(value = "/products/edit", method=RequestMethod.POST)
+	public String updateProductDetail(@RequestParam(value = "id", defaultValue = "") int productId, @Valid Product product, BindingResult result) {
 		if (result.hasErrors()) {
 			return "product/newUpdateProduct";
 		} else {
 			product.setId(productId);
 			this.storeService.saveProduct(product);
-			return "redirect:/products/";
+			return "redirect:/products/show";
 		}
 	}
 	
@@ -132,42 +128,16 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping(value = "/products/new2", method=RequestMethod.POST)
-	public String addNewProduct(@RequestParam("image") MultipartFile image){
-		
-		if (image.isEmpty()) {
-			System.out.println("NO IMAGE! :(");
-		} else {
-			System.out.println("IMAGE! :)");
-		}
-		return "redirect:/products";
-	}
-	
 	@RequestMapping(value = "/products/new", method=RequestMethod.POST)
-	public String addNewProduct1(@Validated @ModelAttribute("product") ProductWrapper productWrapper,
-			@RequestParam("image") MultipartFile image,
-			BindingResult result, final RedirectAttributes redirectAttributes){
-		
-		if (image.isEmpty()){
-			System.out.println("Empty image");
-		} else {
-			System.out.println("YES");
-		}
-		if (productWrapper.getFileData() != null) {
-			System.out.println("There is a file with image!");
-		} else {
-			System.out.println("No image! :(");
-		}
+	public String addNewProduct(@ModelAttribute("product") Product product, BindingResult result){
 		if (result.hasErrors()) {
 			return "product/newUpdateProduct";
-		} else {
-//			redirectAttributes.addFlashAttribute("css", "success");
-//			if (product.isNew())
-//				redirectAttributes.addFlashAttribute("msg", "Product added successfully!");
-//			else 
-//				redirectAttributes.addFlashAttribute("msg", "Product updated successfully!");
 		}
-//		storeService.saveProduct(product);
-		return "redirect:/products";
+		try {
+			storeService.saveProduct(product);
+        } catch (Exception e) {
+            return "redirect:/";
+        }
+        return "redirect:/products";
 	}
 }

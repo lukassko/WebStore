@@ -6,81 +6,66 @@
 <head>
 	<%@ page isELIgnored="false" %>
 	<title>Product detail</title>
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-	<c:choose>
-		<c:when test="${client['new']}">
-			<h1>Add Product</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>Update Product</h1>
-		</c:otherwise>
-	</c:choose>
-	<br />
 
-	<form:form class="form-horizontal" method="post" commandName="product" enctype="multipart/form-data">
-                
-        <form:hidden path="id" />
+<body>
+	<jsp:include page="../others/header.jsp" />
+    
+    <div class="title-container">
+	    <div class="page-title ">
+	    	<c:choose>
+				<c:when test="${product['new']}">
+					Add product
+				</c:when>
+				<c:otherwise>
+					Update product
+			</c:otherwise>
+		</c:choose>
+		</div>
+    </div>
+    
+    
+    <div class = "main-body">
+
+	<form:form class="form-horizontal" method="post" commandName="product" 
+			 enctype="multipart/form-data">
+		
+		<form:hidden path="id" />
         
         <spring:bind path="name">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Name</label>
-			<div class="col-sm-10">
-				<form:input path="name" type="text" class="form-control" 
-                                id="name" placeholder="Name" />
-				<form:errors path="name" class="control-label" />
-			</div>
-		  </div>
+			<label>Name</label>
+			<form:input path="name" type="text" id="name" placeholder="Name" />
+			<form:errors path="name"/>
 		</spring:bind>
 		
 		<spring:bind path="category">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Category</label>
-			<div class="col-sm-10">
-				<form:select path="category" type="text" class="selectpicker"  items="${categories}"
-                                id="category" placeholder="Category" />
-			</div>
-		  </div>
+			<label>Category</label>
+			<br>
+			<form:select path="category" type="text"  items="${categories}" id="category" placeholder="Category" />
+			<form:errors path="category"/>
 		</spring:bind>
-		
+		<br>
 		<spring:bind path="price">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Price</label>
-			<div class="col-sm-10">
-				<form:input path="price" class="form-control" id="price" />
-				<form:errors path="price" class="control-label" />
-			</div>
-		  </div>
+			<label>Price</label>
+			<form:input path="price" type="text" id="price" placeholder="Price" />
+			<form:errors path="price"/>
 		</spring:bind>
 		
-		<spring:bind path="image">
-			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<div class="col-sm-10">
-				    <label class="control-label">Select File</label>
-	   				<form:input path = "image" name="image" type="file" class="file" id="image"/>
-	   				<form:errors path="image" class="control-label" />
-	   			</div>
-		    </div>
+		<spring:bind path="image">	
+			<label>Image</label><br>
+			<form:input path="image" type="file" id="image" placeholder="Image" />	
 		</spring:bind>
-		
-		<div class="form-group">
-		  <div class="col-sm-offset-2 col-sm-10">
-			<c:choose>
-			  <c:when test="${product['new']}">
-			     <button type="submit" class="btn-lg btn-primary pull-right">Add
-                             </button>
-			  </c:when>
-			  <c:otherwise>
-			     <button type="submit" class="btn-lg btn-primary pull-right">Update
-                             </button>
-			  </c:otherwise>
-			</c:choose>
-		  </div>
-		</div>
-		
+		<br><br>
+		<input type="submit" value="Add">	
+
 	</form:form>
+	
+	
+	
 	</div>
+ 	
+    <jsp:include page="../others/footer.jsp" />
+ 
 </body>
 </html>

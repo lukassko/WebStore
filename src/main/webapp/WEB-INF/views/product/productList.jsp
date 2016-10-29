@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -27,7 +28,6 @@
 		        }
 		     }
 		 };
-		console.log(ajaxUrl)
 		 xmlhttp.open("GET", ajaxUrl, true);
 		 xmlhttp.send();
 	}
@@ -62,7 +62,7 @@
   	<div class="help-panel">
 	  	<div class="help-panel-member">
 	  		<label>Sort by:</label>
-	  		 <select id="category">
+	  		 <select id="category" style="width: 200px; padding:4px;margin:0;" type="text" name="search" placeholder="Search..">
 			  <option value="category">Category</option>
 			  <option value="name">Name</option>
 			</select>
@@ -96,7 +96,12 @@
     	 				width="100" height="80">
 				</td>
 				<td>
-					<a class="button new-button" href="${pageContext.request.contextPath}/addProductToCart?id=${product.id}">Buy</a>
+					<security:authorize  access="hasRole('ROLE_ADMIN')">
+						<a class="button edit-button" href="${pageContext.request.contextPath}/products/edit?id=${product.id}">Edit client</a>
+					</security:authorize>
+					<security:authorize  access="hasRole('ROLE_USER')">
+						<a class="button new-button" href="${pageContext.request.contextPath}/addProductToCart?id=${product.id}">Buy</a>
+					</security:authorize>
 				</td>
 			</tr> 
 		</c:forEach> 

@@ -60,12 +60,12 @@ public class ProductRepositoryImpl implements ProductRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Product> findByRequirements(String category, String searchString) {
+	public List<Product> findByRequirements(String findBy, String searchString) {
 		Query query ;
-		if (category.equals("category"))
-			 query = this.manager.createQuery("SELECT p FROM Product p WHERE p." +category+".name LIKE :searchString");
+		if (findBy.equals("category"))
+			 query = this.manager.createQuery("SELECT p FROM Product p WHERE p." +findBy+".name LIKE :searchString");
 		else 
-			 query = this.manager.createQuery("SELECT p FROM Product p WHERE p." +category+" LIKE :searchString");
+			 query = this.manager.createQuery("SELECT p FROM Product p WHERE p." +findBy+" LIKE :searchString");
 
 		query.setParameter("searchString", "%"+searchString+"%");
 		return query.getResultList();

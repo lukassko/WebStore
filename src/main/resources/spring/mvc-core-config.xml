@@ -23,12 +23,14 @@
         <property name="suffix" value=".jsp" />
     </bean>
     
-    <bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	</bean>
+   <bean id="multipartResolver"
+  	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+  
 	
     <bean id="emailValidator" class="com.app.store.utility.EmailValidator" />
  
+ 	<bean id="productWrapper" class="com.app.store.model.ProductWrapper" />
+ 	
  	<mvc:resources mapping="/resources/**" location="/resources/"
 					cache-period="31556926"/>
     
