@@ -57,8 +57,16 @@
 			<form:input path="image" type="file" id="image" placeholder="Image" />	
 		</spring:bind>
 		<br><br>
-		<input type="submit" value="Add">	
-
+		
+		<c:choose>
+			<c:when test="${product['new']}">
+			  <input type="submit" value="Add">
+			</c:when>
+			<c:otherwise>
+			  <input type="submit" value="Update">
+			</c:otherwise>
+		</c:choose>
+			
 	</form:form>
 	
 	

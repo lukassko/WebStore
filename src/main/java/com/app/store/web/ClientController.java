@@ -1,9 +1,15 @@
 package com.app.store.web;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,6 +56,28 @@ public class ClientController {
 		return "others/fail";
 	}
 	
+	@RequestMapping(value = "/unlog", method=RequestMethod.GET)
+	public String unlogHandler() {
+		return "others/unlog";
+	}
+	
+	@RequestMapping(value = "/clientPanel",  method=RequestMethod.GET)
+	public String clientPanelHandler() {
+		if (principalHasRole("ROLE_ADMIN")) 
+			return "redirect:/clients";
+		else 
+			return "redirect:/showOrders";
+	}
+	
+	private boolean principalHasRole(String role) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		for (GrantedAuthority auth : authentication.getAuthorities()) {
+            if (role.equals(auth.getAuthority()))
+                return true;
+        }
+
+		return false;
+	}
 	
 	@RequestMapping(value = "/clients/{clientId}/edit", method=RequestMethod.GET)
 	public String getClientsDetail(@PathVariable("clientId") int clientId, Model model) {
@@ -98,6 +126,6 @@ public class ClientController {
 				redirectAttributes.addFlashAttribute("msg", "User updated successfully!");
 		}
 		storeService.saveClient(client);
-		return "redirect:/clients/" + client.getId()+"/orders";
+		return "redirect:/clients";
 	}
 }

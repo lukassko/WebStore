@@ -63,12 +63,7 @@ public class CartController {
 		this.storeService.buyProducts(shoppingCart);
 		return "redirect:/showOrders";
 	}
-	
-	@RequestMapping(value = "/clientPanel",  method=RequestMethod.GET)
-	public String clientPanelHandler() {
-		return "redirect:/showOrders";
-	}
-	
+		
 	@RequestMapping(value = "/showOrders", method=RequestMethod.GET)
 	public String showOrdersHandler(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 		

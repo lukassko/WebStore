@@ -74,6 +74,11 @@
 		<div class="help-panel-member">
 			<button type="button" class="find-button" onclick="ajaxCall()">Find</button> 
 		</div>
+		<security:authorize  access="hasRole('ROLE_ADMIN')">
+			<div class="help-panel-member">
+				<a class="button new-button" style="font-size: 100%;" href="${pageContext.request.contextPath}/products/new">Add new product</a> 
+			</div>
+		</security:authorize>
   	</div>
 	<div id="productsList" class = "main-body">
       <table class="gridtable" >
@@ -97,7 +102,7 @@
 				</td>
 				<td>
 					<security:authorize  access="hasRole('ROLE_ADMIN')">
-						<a class="button edit-button" href="${pageContext.request.contextPath}/products/edit?id=${product.id}">Edit client</a>
+						<a class="button edit-button" href="${pageContext.request.contextPath}/products/edit?id=${product.id}">Edit</a>
 					</security:authorize>
 					<security:authorize  access="hasRole('ROLE_USER')">
 						<a class="button new-button" href="${pageContext.request.contextPath}/addProductToCart?id=${product.id}">Buy</a>

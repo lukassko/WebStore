@@ -5,9 +5,40 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-4.0.xsd">
-   
-   <http>
- 	<csrf disabled="true"/>
+     
+	<http use-expressions="true">
+	
+		<csrf disabled="true"/>
+	
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/login/" access="permitAll" />
+		<intercept-url pattern="/fail/" access="permitAll" />
+		
+		<intercept-url pattern="/searchProductBy" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/productImage" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/products" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/products/**" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/showProductInCart" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/addProductToCart" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/acceptOrder" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/clientPanel" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/showOrders" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/orders/**" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/clients/**" access="hasRole('ROLE_ADMIN')" />
+		
+		<intercept-url pattern="/clients/" access="hasRole('ROLE_ADMIN')" />
+		
+		
 	    <form-login login-page="/login/" 
 	    	authentication-failure-url="/fail/" 
 	    	username-parameter="username"
